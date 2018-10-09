@@ -1,11 +1,11 @@
 import * as React from "react";
-import Hello from "../pages/Hello.md";
+import { Page } from './Page'
 
 export class App extends React.PureComponent<{}> {
   render() {
     return (
       <div>
-        <Hello />
+        <Page page={"Hello"} cool={"hi"} />
       </div>
     );
   }

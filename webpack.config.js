@@ -5,8 +5,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const tsLoader = {
   loader: 'ts-loader',
   options: {
-    transpileOnly: true,
-    experimentalWatchApi: true
+    transpileOnly: true
   }
 }
 
@@ -14,7 +13,10 @@ const babelLoader = {
   loader: 'babel-loader',
   options: {
     presets: ['@babel/preset-env', '@babel/preset-react'],
-    plugins: ['@babel/plugin-transform-runtime']
+    plugins: [
+      '@babel/plugin-transform-runtime',
+      '@babel/plugin-syntax-dynamic-import'
+    ]
   }
 }
 
