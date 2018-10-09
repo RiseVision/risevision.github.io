@@ -1,0 +1,7 @@
+[submodule "libraries/rise-node"]
+	path = libraries/rise-node
+	url = git@github.com:RiseVision/rise-node.git
+    branch = feature/rest-docs
+[submodule "libraries/rise-ts"]
+	path = libraries/rise-ts
+	url = git@github.com:RiseVision/rise-ts.git

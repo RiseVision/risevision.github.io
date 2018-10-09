@@ -1,0 +1,40 @@
+{
+  "name": "risevision.github.io",
+  "version": "1.0.0",
+  "description": "RISE Vision Developer Docs",
+  "main": "dist/index.js",
+  "repository": "https://github.com/RiseVision/risevision.github.io",
+  "author": "Julian Popescu <jpopesculian@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build:dev": "webpack-dev-server --config webpack.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@types/node": "^10.11.5",
+    "@types/react": "^16.4.16",
+    "@types/react-dom": "^16.0.9",
+    "@types/webpack": "^4.4.15",
+    "babel-loader": "^8.0.4",
+    "fork-ts-checker-webpack-plugin": "^0.4.10",
+    "ts-loader": "^5.2.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.1.2",
+    "@hugmanrique/react-markdown-loader": "^0.0.2",
+    "mobx": "^5.5.0",
+    "mobx-react": "^5.2.8",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "strip-indent": "^2.0.0"
+  }
+}
