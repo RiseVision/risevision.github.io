@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
 PWD="$(pwd)"
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd)"
 ROOT="$(dirname $DIR)"
 
 bold=$(tput bold)
 normal=$(tput sgr0)
 
+. "$DIR/fix_node_modules_resolution.sh"
+
 read -p "${bold}Would you like to update submodules?${normal} [y/N]: " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-	. "$DIR/init_submodules.sh"
+    . "$DIR/init_submodules.sh"
 fi
 
 # rise-node

@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd)"
 PWD="$(pwd)"
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 ROOT="$(dirname $DIR)"
+
+. "$DIR/fix_node_modules_resolution.sh"
 
 # pull all latest changes
 cd $ROOT
@@ -17,5 +19,4 @@ npm run transpile
 cd $ROOT/libraries/rise-ts
 npm install
 
-# return to pwd
 cd $PWD

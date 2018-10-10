@@ -1,0 +1,11 @@
+@global-import 'sanitize.css';
+
+:global(html),
+:global(body),
+:global(#app),
+:root,
+.container {
+  height: 100%;
+  width: 100%;
+  color: hsl(0, 0%, 20%);
+}
