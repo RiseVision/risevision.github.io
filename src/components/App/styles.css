@@ -1,11 +1,13 @@
 @global-import 'sanitize.css';
 
+@value text-color from '../../constants/styles/colors';
+
 :global(html),
 :global(body),
-:global(#app),
 :root,
+:global(#app),
 .container {
   height: 100%;
   width: 100%;
-  color: hsl(0, 0%, 20%);
+  color: text-color;
 }

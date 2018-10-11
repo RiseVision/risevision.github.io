@@ -27,7 +27,7 @@ const cssLoader = {
     modules: true,
     namedExport: true,
     camelCase: true,
-    localIdentName: '[name]_[local]__[hash:base64:5]'
+    localIdentName: '[folder]_[local]__[hash:base64:5]'
   }
 }
 
@@ -56,7 +56,6 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: path.join(__dirname, 'src', 'styles'),
         enforce: 'pre',
         use: [
           { loader: 'style-loader' },
@@ -72,11 +71,12 @@ module.exports = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
-    new webpack.WatchIgnorePlugin([/css\.d\.ts$/])
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     contentBase: __dirname,
     compress: true,
+    hot: true,
     port: 9000
   }
 }

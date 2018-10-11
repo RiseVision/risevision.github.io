@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cls1, cls2, cls3, cls4, cls5 } from "../styles/riseIcon.css";
+import { cls1, cls2, cls3, cls4, cls5 } from "./styles.css";
 
 interface Props {
   width?: number;

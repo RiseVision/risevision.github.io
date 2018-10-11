@@ -1,0 +1,11 @@
+.container {
+}
+
+.name {
+  font-weight: bold;
+}
+
+.items {
+  list-style: none;
+  padding-left: 0;
+}
