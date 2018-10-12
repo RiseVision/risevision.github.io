@@ -7,7 +7,7 @@ const README = fs.readFileSync(`./${root}/README.md`).toString()
 module.exports = {
   controllers: `${root}/dist/apis/!(index|transport)*.js`,
   schemas: `${root}/dist/schema/*.js,${root}/dist/schema/+(common|responses)/*.js`,
-  out: 'assets/rest/swagger.json',
+  out: 'src/constants/swagger.json',
   static: {
     info: {
       title: 'RISE Node',

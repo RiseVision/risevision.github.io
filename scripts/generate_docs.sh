@@ -21,9 +21,13 @@ rc_openapi_gen="$ROOT/libraries/rise-node/node_modules/rc-openapi-gen/cli.js"
 cd $ROOT
 $rc_openapi_gen -c rc-openapi-gen.conf.js
 
+cd $ROOT/libraries/rise-node
+git stash
+
 # rise-ts
 cd $ROOT/libraries/rise-ts
 npm run docs
 cp -R docs $ROOT/assets/rise-ts
+git stash
 
 cd $PWD

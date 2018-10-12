@@ -13,6 +13,7 @@ export class TableOfContents extends React.PureComponent<{}> {
             <Item name="Testnet" path="pages/installation/Testnet" />
             <Item name="Mainnet" path="pages/installation/Mainnet" />
           </Item>
+          <Item name="API Reference" path="api" />
         </Section>
       </ul>
     );

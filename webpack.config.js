@@ -37,7 +37,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'assets', 'js'),
     filename: 'index.js',
-    publicPath: '/assets/js'
+    publicPath: '/assets/js/'
   },
   resolve: {
     extensions: ['*', '.md', '.css', '.js', '.jsx', '.ts', '.tsx']

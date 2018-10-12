@@ -14,9 +14,11 @@ git submodule update --recursive --remote
 cd $ROOT/libraries/rise-node
 npm install
 npm run transpile
+git stash
 
 # rise-ts
 cd $ROOT/libraries/rise-ts
 npm install
+git stash
 
 cd $PWD
