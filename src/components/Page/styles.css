@@ -1,0 +1,123 @@
+@global-import 'highlight.js/styles/github.css';
+
+.container {
+  position: relative;
+  animation: fadein 0.2s;
+
+  :global(a) {
+    color: #4a90e2; /* @TODO make global color variable */
+    text-decoration: none;
+  }
+
+  :global(blockquote) {
+    line-height: 1.5rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    color: #666; /* @TODO make global color variable */
+  }
+
+  /* Headings */
+  :global(h1),
+  :global(h2),
+  :global(h3),
+  :global(h4),
+  :global(h5),
+  :global(h6) {
+    margin-top: 1.25rem;
+    margin-bottom: 0;
+    line-height: 1.5rem;
+  }
+
+  :global(h1) {
+    font-size: 2rem;
+    text-transform: uppercase;
+    line-height: 2.75rem;
+    margin-top: 1.5rem;
+    padding-bottom: 1rem;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+  }
+
+  :global(h2) {
+    font-size: 1.85rem;
+    line-height: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  :global(h3) {
+    font-size: 1.5rem;
+  }
+
+  :global(h4) {
+    font-size: 0.8rem;
+  }
+
+  :global(h5) {
+    font-size: 0.6rem;
+  }
+
+  :global(h6) {
+    font-size: 0.4rem;
+  }
+
+  /* Tables */
+  :global(table) {
+    margin-top: 1.25rem;
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  :global(p) {
+    line-height: 1.5em;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+
+  :global(ul),
+  :global(ol) {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  :global(code) {
+    padding: 0.2em;
+    border-radius: 0.5em;
+  }
+
+  :global(pre code) {
+    padding: 1em;
+  }
+
+  :global(table td),
+  :global(table th) {
+    padding: 0.5em 0.75em;
+    text-align: left;
+    border: 1px solid #e5ecf4; /* @TODO make global color variable */
+    line-height: 1.5rem;
+    min-width: 7em;
+  }
+
+  :global(ul li),
+  :global(ol li) {
+    line-height: 1.5rem;
+  }
+
+  :global(ul ul),
+  :global(ol ul),
+  :global(ul ol),
+  :global(ol ol) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -14,6 +14,7 @@ export class TableOfContents extends React.PureComponent<{}> {
             <Item name="Mainnet" path="pages/installation/Mainnet" />
           </Item>
           <Item name="API Reference" path="api" />
+          <Item name="Javascript Client" path="rise-ts" />
         </Section>
       </ul>
     );

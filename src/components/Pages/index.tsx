@@ -14,7 +14,7 @@ export class Pages extends React.Component {
           <TableOfContents />
         </div>
         <div className={styles.content}>
-          <Page page={navigationStore.path} />
+          <Page page={navigationStore.path} anchor={navigationStore.bang} />
         </div>
       </div>
     );

@@ -2,6 +2,8 @@
 }
 
 .name {
+  color: #666; /* @TODO make global color */
+  line-height: 1.5em;
 }
 
 .name:hover {

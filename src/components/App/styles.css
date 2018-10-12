@@ -1,6 +1,6 @@
 @global-import 'sanitize.css';
 
-@value text-color from '../../constants/styles/colors';
+@value text-color from '../../styles/variables/colors';
 
 :global(html),
 :global(body),

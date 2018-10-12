@@ -8,7 +8,8 @@ import {
   first,
   split,
   reduce,
-  entries
+  entries,
+  last
 } from "lodash/fp";
 
 export enum handlers {
@@ -32,8 +33,10 @@ export const paths = {
   INDEX: "GettingStarted"
 };
 
-const matchPath = (newPath: string): { handler: handlers; path: string } => {
-  const { root, path } = splitPath(newPath);
+const matchPath = (
+  newPath: string
+): { handler: handlers; path: string; bang: string } => {
+  const { root, path, bang } = splitPath(newPath);
   const handler = reduce(
     (result: handlers, entry: [handlers, matcher]): handlers => {
       const [handler, matcher] = entry;
@@ -45,17 +48,29 @@ const matchPath = (newPath: string): { handler: handlers; path: string } => {
     handlers.NOT_FOUND,
     entries(matchers)
   );
-  return { handler, path };
+  return { handler, path, bang };
 };
 
 const splitPath = (path: string) => {
   const pathWithoutHash = path[0] === "#" ? path.slice(1) : path;
-  const [root, ...rest] = split("/", pathWithoutHash);
-  return { root, path: joinPath(...rest) };
+  const [pathWithoutBang, ...bangParts] = pathWithoutHash.split("!");
+  const [root, ...rest] = split("/", pathWithoutBang);
+  return {
+    root,
+    path: join("/", reject(isEmpty, rest)),
+    bang: join("!", reject(isEmpty, bangParts))
+  };
 };
 
-const joinPath = (...parts: string[]): string => {
-  return join("/", reject(isEmpty, parts));
+const joinPath = (root?: string, path?: string, bang?: string): string => {
+  let result = root || "";
+  if (!isEmpty(result) && !isEmpty(path)) {
+    result = result + "/" + path;
+  }
+  if (!isEmpty(result) && !isEmpty(bang)) {
+    result = result + "!" + bang;
+  }
+  return result;
 };
 
 export const HOME = joinPath(handlers.PAGES, paths.INDEX);
@@ -65,6 +80,8 @@ export class NavigationStore {
   path = paths.INDEX;
   @observable
   handler = handlers.PAGES;
+  @observable
+  bang = "";
 
   constructor() {
     this.navigate(
@@ -78,13 +95,28 @@ export class NavigationStore {
   }
 
   subscribe = () => {
-    window.onhashchange = event => {
-      console.log("default prevented");
-      event.preventDefault();
-      console.log(event);
-    };
+    window.addEventListener("click", evt => {
+      const { target } = evt;
+      if (
+        evt.target &&
+        !isEmpty((target as HTMLElement).tagName) &&
+        (target as HTMLElement).tagName.toLowerCase() == "a" &&
+        (target as HTMLAnchorElement).origin == window.location.origin &&
+        (target as HTMLAnchorElement).pathname == window.location.pathname &&
+        !isEmpty((target as HTMLAnchorElement).hash)
+      ) {
+        evt.preventDefault();
+        return this.navigate(
+          joinPath(
+            this.handler,
+            this.path,
+            (target as HTMLAnchorElement).hash.slice(1)
+          )
+        );
+      }
+    });
     window.onpopstate = ({ state }) => {
-      if (isEmpty(state && state.path)) {
+      if (!state || isEmpty(state.path)) {
         return;
       }
       this.navigate(state.path, false);
@@ -98,9 +130,10 @@ export class NavigationStore {
 
   @action
   navigate = (newPath: string, push = true) => {
-    const { handler, path } = matchPath(newPath);
+    const { handler, path, bang } = matchPath(newPath);
     this.handler = handler;
     this.path = path;
+    this.bang = bang;
     if (push) {
       this.doPushState();
     }
@@ -123,6 +156,11 @@ export class NavigationStore {
 
   @computed
   get fullPath() {
+    return joinPath(this.handler, this.path, this.bang);
+  }
+
+  @computed
+  get banglessPath() {
     return joinPath(this.handler, this.path);
   }
 

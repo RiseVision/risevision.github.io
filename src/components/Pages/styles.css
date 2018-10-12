@@ -1,6 +1,6 @@
 .container {
   margin: 0 auto;
-  max-width: 50em;
+  max-width: 60em;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -8,7 +8,7 @@
 }
 
 .table-of-contents {
-  width: 10em;
+  width: 15em;
 }
 
 .content {

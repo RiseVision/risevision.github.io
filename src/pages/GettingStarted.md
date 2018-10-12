@@ -99,28 +99,21 @@ doc](#an-h2-header). Here's a footnote [^1].
 
 Tables can look like this:
 
-size  material      color
-----  ------------  ------------
-9     leather       brown
-10    hemp canvas   natural
-11    glass         transparent
+| size |  material    |  color      |
+| ---- | ------------ | ----------- |
+| 9    | leather      | brown       |
+| 10   | hemp canvas  | natural     |
+| 11   | glass        | transparent |
 
 Table: Shoes, their sizes, and what they're made of
 
 (The above is the caption for the table.) Pandoc also supports
 multi-line tables:
 
---------  -----------------------
-keyword   text
---------  -----------------------
-red       Sunsets, apples, and
-          other red or reddish
-          things.
-
-green     Leaves, grass, frogs
-          and other things it's
-          not easy being.
---------  -----------------------
+| keyword  | text                    |
+| -------- | ----------------------- |
+| red      | Sunsets <br> apples     |
+| green    | Leaves <br> grass       |
 
 A horizontal rule follows.
 

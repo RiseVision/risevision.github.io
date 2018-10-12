@@ -1,5 +1,6 @@
 import * as React from "react";
 import { RedocStandalone } from "redoc";
+import { Loader } from "../Loader";
 
 interface Props {
   [prop: string]: any;
@@ -22,7 +23,7 @@ export class Redoc extends React.Component<Props, State> {
     const { page, ...args } = this.props;
     const { loading, error, Page, spec } = this.state;
     if (loading) {
-      return <div>"loading"</div>;
+      return <Loader />;
     }
     if (error) {
       return <div>{error}</div>;

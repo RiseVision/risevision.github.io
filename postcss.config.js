@@ -5,6 +5,7 @@ module.exports = {
     'postcss-preset-env': {},
     'postcss-icss-values': {},
     'postcss-import': {},
-    'postcss-global-import': {}
+    'postcss-global-import': {},
+    'postcss-nested': {}
   }
 }

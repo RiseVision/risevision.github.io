@@ -14,11 +14,11 @@ interface Props {
 @observer
 export class Item extends React.Component<Props> {
   render() {
-    const active = this.props.path == navigationStore.fullPath;
+    const active = this.props.path == navigationStore.banglessPath;
     const activeChildren =
       !active &&
       some(
-        matches({ path: navigationStore.fullPath }),
+        matches({ path: navigationStore.banglessPath }),
         map("props", React.Children.toArray(this.props.children))
       );
     return (

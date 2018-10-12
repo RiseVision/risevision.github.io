@@ -1,6 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const rehypeHighlight = require('rehype-highlight')
+const remarkSlug = require('remark-slug')
 
 const tsLoader = {
   loader: 'ts-loader',
@@ -16,7 +18,8 @@ const babelLoader = {
     plugins: [
       '@babel/plugin-transform-runtime',
       '@babel/plugin-syntax-dynamic-import',
-      'react-hot-loader/babel'
+      'react-hot-loader/babel',
+      'emotion'
     ]
   }
 }
@@ -52,7 +55,16 @@ module.exports = {
     rules: [
       {
         test: /\.md$/,
-        use: [babelLoader, { loader: '@hugmanrique/react-markdown-loader' }]
+        use: [
+          babelLoader,
+          {
+            loader: '@hugmanrique/react-markdown-loader',
+            options: {
+              rehypePlugins: [rehypeHighlight],
+              remarkPlugins: [remarkSlug]
+            }
+          }
+        ]
       },
       {
         test: /\.css$/,
