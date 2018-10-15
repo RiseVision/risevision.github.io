@@ -25,9 +25,12 @@ cd $ROOT/libraries/rise-node
 git stash
 
 # rise-ts
+dest=$ROOT/assets/rise-ts
+rm -rf $dest
 cd $ROOT/libraries/rise-ts
 npm run docs
-cp -R docs $ROOT/assets/rise-ts
+cp -R docs $dest
 git stash
+$DIR/minify-static-site.sh $dest
 
 cd $PWD
