@@ -20,7 +20,7 @@ const resolvers: resolvers = {
     return <IFrame url="/assets/rise-ts" />;
   },
   [handlers.NOT_FOUND]: async () => {
-    const NotFound = (await import("../NotFound")).NotFound;
+    const NotFound = (await import("../Error/NotFound")).NotFound;
     return <NotFound />;
   }
 };
@@ -28,6 +28,6 @@ const resolvers: resolvers = {
 @observer
 export class Router extends React.Component {
   render() {
-    return <Route resolver={resolvers[navigationStore.handler]}/>;
+    return <Route resolver={resolvers[navigationStore.handler]} />;
   }
 }

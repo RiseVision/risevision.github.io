@@ -7,7 +7,7 @@ interface Props {
 interface State {
   rendered?: JSX.Element;
   loading: boolean;
-  error: Error | null;
+  error: Error | string | null;
 }
 
 export class Route extends React.Component<Props, State> {
@@ -46,7 +46,17 @@ export class Route extends React.Component<Props, State> {
       const rendered = await this.props.resolver();
       this.setState({ rendered, loading: false, error: null });
     } catch (e) {
-      this.setState({ error: e.toString(), loading: false });
+      const message = "Something went wrong loading your page";
+      try {
+        const Unknown = (await import("../../Error/Unknown")).Unknown;
+        this.setState({
+          rendered: <Unknown subheader={message} />,
+          loading: false,
+          error: null
+        });
+      } catch (e) {
+        this.setState({ error: message, loading: false });
+      }
     }
   }
 }

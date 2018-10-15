@@ -26,7 +26,8 @@
     "webpack",
     "jest",
     "dist",
-    "assets"
+    "assets",
+    "./*.js"
   ],
   "types": [
     "typePatches"

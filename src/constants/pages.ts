@@ -1,16 +1,17 @@
-interface Item {
+export interface Item {
   name: string;
   page?: string;
   link?: string;
+  external?: string;
   items?: Item[];
 }
 
-interface Section {
+export interface Section {
   name: string;
   items: Item[];
 }
 
-interface TOC {
+export interface TOC {
   sections: Section[];
 }
 
@@ -36,6 +37,10 @@ export const tableOfContents: TOC = {
               page: "installation/Testnet"
             }
           ]
+        },
+        {
+          name: "Lightpaper",
+          external: "https://downloads.rise.vision/lightpaper.pdf"
         }
       ]
     },

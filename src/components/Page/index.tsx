@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Loader } from "../Loader";
+import { Link } from '../Link'
 import {
   CancelablePromise,
   makeCancelable,
@@ -40,7 +41,7 @@ export class Page extends React.Component<Props, State> {
     }
     return Page ? (
       <div className={styles!.container}>
-        <Page {...args} />
+        <Page Link={Link} {...args} />
       </div>
     ) : null;
   }
