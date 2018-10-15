@@ -16,7 +16,7 @@ export enum handlers {
   NOT_FOUND = "notfound",
   PAGES = "pages",
   API = "api",
-  RISE_TS = "rise-ts"
+  RISE_TS = "rise-js"
 }
 
 type matcher = (root: string, path: string) => boolean;
@@ -26,7 +26,7 @@ export const matchers: matchers = {
   [handlers.PAGES]: (root, _path) => /^pages$/i.test(root),
   [handlers.NOT_FOUND]: (_root, _path) => false,
   [handlers.API]: (root, _path) => /^(api|operation|section|tag)$/i.test(root),
-  [handlers.RISE_TS]: (root, _path) => /^rise-ts$/i.test(root)
+  [handlers.RISE_TS]: (root, _path) => /^rise-js$/i.test(root)
 };
 
 export const paths = {
@@ -82,6 +82,8 @@ export class NavigationStore {
   handler = handlers.PAGES;
   @observable
   bang = "";
+  @observable
+  tick = 0;
 
   constructor() {
     this.navigate(
@@ -134,9 +136,18 @@ export class NavigationStore {
     this.handler = handler;
     this.path = path;
     this.bang = bang;
+    this.tick = this.tick + 1;
     if (push) {
       this.doPushState();
     }
+  };
+
+  doPushState = () => {
+    window.history.pushState(
+      { path: this.fullPath },
+      this.title,
+      "#" + this.fullPath
+    );
   };
 
   @computed
@@ -163,14 +174,6 @@ export class NavigationStore {
   get banglessPath() {
     return joinPath(this.handler, this.path);
   }
-
-  doPushState = () => {
-    window.history.pushState(
-      { path: this.fullPath },
-      this.title,
-      "#" + this.fullPath
-    );
-  };
 }
 
 export const navigationStore = new NavigationStore();

@@ -1,0 +1,9 @@
+@value top-bar-height from '../../styles/variables/layout';
+
+.container {
+  position: relative;
+
+  :global(.menu-content) {
+    top: calc(top-bar-height + 0.5em) !important;
+  }
+}

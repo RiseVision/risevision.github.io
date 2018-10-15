@@ -2,6 +2,7 @@ import * as React from "react";
 import { Loader } from "../Loader";
 import * as styles from "./styles.css";
 import classNames from "classnames";
+import { toAbsoluteUrl } from "../../helpers/toAbsoluteUrl";
 
 interface Props {
   url: string;
@@ -27,8 +28,7 @@ export class IFrame extends React.Component<Props, State> {
           className={classNames(styles.iframe, {
             [styles.hidden]: this.state.loading
           })}
-          sandbox="allow-scripts"
-          src={this.props.url}
+          src={toAbsoluteUrl(this.props.url)}
           ref={ref => (this.iframe = ref)}
         />
       </div>
@@ -44,7 +44,6 @@ export class IFrame extends React.Component<Props, State> {
       return;
     }
     this.iframe.onload = () => {
-      console.log("happens");
       this.setState({ loading: false });
     };
   }

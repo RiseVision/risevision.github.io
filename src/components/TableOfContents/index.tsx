@@ -1,10 +1,17 @@
 import * as React from "react";
-import * as styles from "./styles.css";
-import { Section } from "./Section";
 import { Item } from "./Item";
+import { Section } from "./Section";
+import { map } from "lodash/fp";
+import * as styles from "./styles.css";
+import { tableOfContents } from "../../constants/pages";
 
 export class TableOfContents extends React.PureComponent<{}> {
   render() {
+    // return (
+    //   <ul className={styles.container}>
+    //     {map(() => {}, tableOfContents.sections)}
+    //   </ul>
+    // );
     return (
       <ul className={styles.container}>
         <Section name="Introduction">
@@ -14,9 +21,9 @@ export class TableOfContents extends React.PureComponent<{}> {
             <Item name="Mainnet" path="pages/installation/Mainnet" />
           </Item>
           <Item name="API Reference" path="api" />
-          <Item name="Javascript Client" path="rise-ts" />
+          <Item name="Javascript Client" path="rise-js" />
         </Section>
       </ul>
-    );
+    )
   }
 }

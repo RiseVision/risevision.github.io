@@ -1,21 +1,33 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { navigationStore, handlers } from "../../stores/navigation";
-import { Pages } from "../Pages";
-import { Redoc } from "../Redoc";
-import { IFrame } from "../IFrame";
+import { Route } from "./Route";
+
+type handlerResolver = () => Promise<JSX.Element>;
+type resolvers = { [key in handlers]: handlerResolver };
+
+const resolvers: resolvers = {
+  [handlers.PAGES]: async () => {
+    const Pages = (await import("../Pages")).Pages;
+    return <Pages />;
+  },
+  [handlers.API]: async () => {
+    const Redoc = (await import("../Redoc")).Redoc;
+    return <Redoc />;
+  },
+  [handlers.RISE_TS]: async () => {
+    const IFrame = (await import("../IFrame")).IFrame;
+    return <IFrame url="/assets/rise-ts" />;
+  },
+  [handlers.NOT_FOUND]: async () => {
+    const NotFound = (await import("../NotFound")).NotFound;
+    return <NotFound />;
+  }
+};
 
 @observer
 export class Router extends React.Component {
   render() {
-    switch (navigationStore.handler) {
-      case handlers.PAGES:
-        return <Pages />;
-      case handlers.API:
-        return <Redoc />;
-      case handlers.RISE_TS:
-        return <IFrame url="/assets/rise-ts" />;
-    }
-    return null;
+    return <Route resolver={resolvers[navigationStore.handler]}/>;
   }
 }
