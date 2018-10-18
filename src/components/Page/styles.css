@@ -3,6 +3,8 @@
 .container {
   position: relative;
   animation: fadein 0.2s;
+  padding-bottom: 4em;
+  padding-right: 1em;
 
   :global(a) {
     color: #4a90e2; /* @TODO make global color variable */

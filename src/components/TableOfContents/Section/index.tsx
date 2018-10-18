@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as styles from "./styles.css";
+import { List as LinkList } from "../../Link/List";
 
 interface Props {
   name: string;
-  children: React.ReactNode;
+  children?: JSX.Element | JSX.Element[];
 }
 
 export class Section extends React.PureComponent<Props> {
@@ -12,7 +13,7 @@ export class Section extends React.PureComponent<Props> {
       <li className={styles.container}>
         <div className={styles.name}>{this.props.name}</div>
         {this.props.children ? (
-          <ul className={styles.items}>{this.props.children}</ul>
+          <LinkList className={styles.items}>{this.props.children}</LinkList>
         ) : null}
       </li>
     );

@@ -4,7 +4,14 @@ module.exports = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['extends', 'ignores', 'value', 'global-import']
+        ignoreAtRules: [
+          'extends',
+          'ignores',
+          'value',
+          'global-import',
+          'mixin',
+          'define-mixin'
+        ]
       }
     ],
     'unit-whitelist': ['em', 'rem', 's', '%'],

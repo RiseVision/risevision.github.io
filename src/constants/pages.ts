@@ -1,14 +1,8 @@
-export interface Item {
-  name: string;
-  page?: string;
-  link?: string;
-  external?: string;
-  items?: Item[];
-}
+import { ConfigItem } from '../components/Link/List/helpers'
 
 export interface Section {
   name: string;
-  items: Item[];
+  items: ConfigItem[];
 }
 
 export interface TOC {

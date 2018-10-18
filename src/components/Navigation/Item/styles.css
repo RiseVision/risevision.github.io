@@ -1,0 +1,54 @@
+@define-mixin inactive-menu {
+  top: 3.5em;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@define-mixin active-menu {
+  top: 4em;
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.container {
+  position: relative;
+}
+
+.name {
+  line-height: 1.5em;
+}
+
+.active,
+.activeItemParent {
+  font-weight: bold;
+}
+
+.items {
+  position: absolute;
+  list-style: none;
+  background: #fff;
+  padding: 1em;
+  border-radius: 0.5em;
+  right: 1em;
+  width: 100%;
+  box-shadow: 0 0 1em hsla(0, 0%, 0%, 0.1);
+  transition: all 0.3s ease-in-out;
+
+  & > li > a {
+    padding: 0.5em 1em;
+  }
+
+  @mixin inactive-menu;
+
+  &:hover {
+    @mixin active-menu;
+  }
+}
+
+.name:hover {
+  cursor: pointer;
+
+  & + .items {
+    @mixin active-menu;
+  }
+}

@@ -6,6 +6,7 @@ module.exports = {
     'postcss-icss-values': {},
     'postcss-import': {},
     'postcss-global-import': {},
-    'postcss-nested': {}
+    'postcss-nested': {},
+    'postcss-mixins': {}
   }
 }
