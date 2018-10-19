@@ -33,6 +33,16 @@ export const tableOfContents: TOC = {
           ]
         },
         {
+          name: "Node Management",
+          page: "NodeManagement",
+          items: [
+            {
+              name: "Folder Structure",
+              page: "nodeManagement/FolderStructure"
+            }
+          ]
+        },
+        {
           name: "Lightpaper",
           external: "https://downloads.rise.vision/lightpaper.pdf"
         }

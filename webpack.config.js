@@ -6,11 +6,6 @@ const remarkSlug = require('remark-slug')
 const remarkToc = require('remark-toc')
 const remarkNormalizeHeadings = require('remark-normalize-headings')
 
-module.exports = {
-  rehypePlugins: [rehypeHighlight],
-  remarkPlugins: [remarkNormalizeHeadings, remarkSlug, remarkToc]
-}
-
 const tsLoader = {
   loader: 'ts-loader',
   options: {

@@ -3,8 +3,7 @@
 .container {
   position: relative;
   animation: fadein 0.2s;
-  padding-bottom: 4em;
-  padding-right: 15em;
+  padding: 0 16em 4em 0;
 
   :global(a) {
     color: #4a90e2; /* @TODO make global color variable */
@@ -15,7 +14,11 @@
     line-height: 1.5rem;
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
-    color: #666; /* @TODO make global color variable */
+    color: #0086b3;
+    background: #f0f8ff;
+    margin-left: 0;
+    border-radius: 0.5em;
+    padding: 0.1em 1em 1em 1em;
   }
 
   /* Headings */
@@ -85,6 +88,9 @@
   :global(code) {
     padding: 0.2em;
     border-radius: 0.5em;
+    padding: 0.2em 0.4em;
+    border-radius: 0.4em;
+    background: hsla(0, 0%, 50%, 0.1);
   }
 
   :global(pre code) {

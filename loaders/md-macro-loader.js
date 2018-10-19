@@ -1,6 +1,29 @@
 const { split, map, reject, isEmpty, fromPairs } = require('lodash/fp')
 const regex = /\[[^\/]?([^\]\s]*)((\s?([^\s=]+)=([^\s=]+))*)\]([^(]?[^\[]*)\[\/\1\]/gi
 
+/**
+ * USAGE
+ *
+ * Include macros in your markdown in the following format:
+ *
+ * [tag prop1=data prop2=another]content markdown[/tag]
+ *
+ * `macro` (in this case "tag") gets mapped to a function in `macros` below
+ * with the following type signature
+ *
+ * (
+ *   content: string,             # content in macro ("content markdown")
+ *   props: { [string]: string }, # props object ({ prop1: "data", prop2: "another" })
+ *   original: string,            # original macro string found ("[tag prop=data prop2=another]content markdown[/tag]")
+ *   position: integer,           # position in source document
+ *   context: string              # source document
+ * } => string                    # replacement string
+ *
+ * `macro` gets replaced with the outputted strng and then will be parsed by
+ * the markdown loader
+ *
+ */
+
 const macros = {
   toc: () => {
     return `

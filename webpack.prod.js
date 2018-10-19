@@ -1,8 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const rehypeHighlight = require('rehype-highlight')
 const remarkSlug = require('remark-slug')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const remarkToc = require('remark-toc')
+const remarkNormalizeHeadings = require('remark-normalize-headings')
 
 const tsLoader = {
   loader: 'ts-loader',
@@ -30,6 +32,14 @@ const cssLoader = {
   }
 }
 
+const mdLoader = {
+  loader: '@hugmanrique/react-markdown-loader',
+  options: {
+    rehypePlugins: [rehypeHighlight],
+    remarkPlugins: [remarkNormalizeHeadings, remarkSlug, remarkToc]
+  }
+}
+
 module.exports = {
   entry: ['./src/index.tsx'],
   output: {
@@ -51,16 +61,7 @@ module.exports = {
     rules: [
       {
         test: /\.md$/,
-        use: [
-          babelLoader,
-          {
-            loader: '@hugmanrique/react-markdown-loader',
-            options: {
-              rehypePlugins: [rehypeHighlight],
-              remarkPlugins: [remarkSlug]
-            }
-          }
-        ]
+        use: [babelLoader, mdLoader, { loader: 'md-macro-loader' }]
       },
       {
         test: /\.css$/,
@@ -76,5 +77,8 @@ module.exports = {
         use: [babelLoader, tsLoader]
       }
     ]
+  },
+  resolveLoader: {
+    modules: ['node_modules', path.resolve(__dirname, 'loaders')]
   }
 }

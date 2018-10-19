@@ -27,6 +27,7 @@
     "jest",
     "dist",
     "assets",
+    "loaders",
     "./*.js"
   ],
   "types": [
