@@ -1,0 +1,31 @@
+.container {
+  position: absolute;
+  width: 13em;
+  right: 1em;
+  top: 2em;
+}
+
+.title {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85em;
+}
+
+.links {
+  & :global(ul) {
+    padding-left: 1em;
+  }
+
+  & > h2,
+  & > h3 {
+    display: none;
+  }
+
+  & :global([href="#end-toc"]) {
+    display: none;
+  }
+
+  & > ul {
+    padding: 0;
+  }
+}

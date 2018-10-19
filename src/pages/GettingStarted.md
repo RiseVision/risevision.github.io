@@ -1,6 +1,8 @@
 An h1 header
 ============
 
+[toc][/toc]
+
 Paragraphs are separated by a blank line.
 
 2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists
@@ -95,7 +97,7 @@ Here's a link to [a website](http://foo.bar), to a [local
 doc](local-doc.html), and to a [section heading in the current
 doc](#an-h2-header). Here's a footnote [^1].
 
-Test Link {{ <props.Link href="pages/Installation">Hello</props.Link> }}
+Test Link [link href=pages/Installation]Hello[/link]
 
 [^1]: Footnote text goes here.
 

@@ -4,7 +4,7 @@
   position: relative;
   animation: fadein 0.2s;
   padding-bottom: 4em;
-  padding-right: 1em;
+  padding-right: 15em;
 
   :global(a) {
     color: #4a90e2; /* @TODO make global color variable */
@@ -51,15 +51,15 @@
   }
 
   :global(h4) {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
 
   :global(h5) {
-    font-size: 0.6rem;
+    font-size: 1rem;
   }
 
   :global(h6) {
-    font-size: 0.4rem;
+    font-size: 0.8rem;
   }
 
   /* Tables */

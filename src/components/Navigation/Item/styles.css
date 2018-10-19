@@ -1,3 +1,5 @@
+@value text-color from '../../../styles/variables/colors';
+
 @define-mixin inactive-menu {
   top: 3.5em;
   opacity: 0;
@@ -35,7 +37,9 @@
   transition: all 0.3s ease-in-out;
 
   & > li > a {
-    padding: 0.5em 1em;
+    padding: 1em;
+    line-height: 3em;
+    color: text-color;
   }
 
   @mixin inactive-menu;

@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Loader } from "../Loader";
-import { Link } from '../Link'
+import { Link } from "../Link";
+import { TableOfContents } from "./TableOfContents";
 import {
   CancelablePromise,
   makeCancelable,
@@ -41,7 +42,7 @@ export class Page extends React.Component<Props, State> {
     }
     return Page ? (
       <div className={styles!.container}>
-        <Page Link={Link} {...args} />
+        <Page Link={Link} TableOfContents={TableOfContents} {...args} />
       </div>
     ) : null;
   }
@@ -94,7 +95,7 @@ export class Page extends React.Component<Props, State> {
       if (e instanceof CanceledError) {
         return;
       }
-      console.log(e.class.name)
+      console.log(e.class.name);
       this.setState({ loading: false, error: e });
     }
   }

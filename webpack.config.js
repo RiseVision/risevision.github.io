@@ -3,6 +3,13 @@ const webpack = require('webpack')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const rehypeHighlight = require('rehype-highlight')
 const remarkSlug = require('remark-slug')
+const remarkToc = require('remark-toc')
+const remarkNormalizeHeadings = require('remark-normalize-headings')
+
+module.exports = {
+  rehypePlugins: [rehypeHighlight],
+  remarkPlugins: [remarkNormalizeHeadings, remarkSlug, remarkToc]
+}
 
 const tsLoader = {
   loader: 'ts-loader',
@@ -32,6 +39,14 @@ const cssLoader = {
   }
 }
 
+const mdLoader = {
+  loader: '@hugmanrique/react-markdown-loader',
+  options: {
+    rehypePlugins: [rehypeHighlight],
+    remarkPlugins: [remarkNormalizeHeadings, remarkSlug, remarkToc]
+  }
+}
+
 module.exports = {
   devtool: 'inline-source-map',
   entry: ['./src/index.tsx'],
@@ -53,16 +68,7 @@ module.exports = {
     rules: [
       {
         test: /\.md$/,
-        use: [
-          babelLoader,
-          {
-            loader: '@hugmanrique/react-markdown-loader',
-            options: {
-              rehypePlugins: [rehypeHighlight],
-              remarkPlugins: [remarkSlug]
-            }
-          }
-        ]
+        use: [babelLoader, mdLoader, { loader: 'md-macro-loader' }]
       },
       {
         test: /\.css$/,
@@ -88,5 +94,8 @@ module.exports = {
     compress: true,
     hot: true,
     port: 9000
+  },
+  resolveLoader: {
+    modules: ['node_modules', path.resolve(__dirname, 'loaders')]
   }
 }

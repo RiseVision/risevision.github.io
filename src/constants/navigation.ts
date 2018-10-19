@@ -6,7 +6,17 @@ export const navigation: { items: ConfigItem[] } = {
     { name: "API Reference", link: "api" },
     {
       name: "Client Libraries",
-      items: [{ name: "JavaScript", link: "rise-js" }]
+      items: [
+        { name: "JavaScript", link: "rise-js" },
+        {
+          name: "Python Client",
+          external: "https://github.com/RiseVision/rise-py"
+        },
+        {
+          name: "Java Client",
+          external: "https://github.com/RiseVision/java-wrapper-api"
+        }
+      ]
     }
   ]
 };

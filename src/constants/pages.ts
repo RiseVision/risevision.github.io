@@ -1,4 +1,4 @@
-import { ConfigItem } from '../components/Link/List/helpers'
+import { ConfigItem } from "../components/Link/List/helpers";
 
 export interface Section {
   name: string;
@@ -39,15 +39,44 @@ export const tableOfContents: TOC = {
       ]
     },
     {
-      name: "API Reference",
+      name: "API",
       items: [
         {
-          name: "HTTP Client",
+          name: "REST API Reference",
           link: "api"
         },
         {
           name: "JavaScript Client",
           link: "rise-js"
+        },
+        {
+          name: "Python Client",
+          external: "https://github.com/RiseVision/rise-py"
+        },
+        {
+          name: "Java Client",
+          external: "https://github.com/RiseVision/java-wrapper-api"
+        }
+      ]
+    },
+    {
+      name: "Connect",
+      items: [
+        {
+          name: "Github",
+          external: "https://github.com/RiseVision"
+        },
+        {
+          name: "Slack",
+          external: "http://slack.rise.vision/"
+        },
+        {
+          name: "Telegram",
+          external: "https://t.me/risevisionofficial"
+        },
+        {
+          name: "Bounty Program",
+          external: "https://rise.vision/developer-bounties-2/"
         }
       ]
     }
