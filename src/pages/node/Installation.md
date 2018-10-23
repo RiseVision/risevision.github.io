@@ -1,7 +1,5 @@
 # Installation
 
-[toc][/toc]
-
 ## Assumptions
 This guide assumes basic knowledge of everything related to running a linux server on the internet. 
 The install procedure, available with the new TypeScript Core will facilitate installation of dependencies and initial setup, but won't take care of securing your server or keeping its software up to date.
@@ -32,4 +30,4 @@ Most of them are already installed in most vps and the installer command will ev
 
 ## Next Steps
 
-Install either a [link href=pages/installation/Mainnet]Mainnet Node[/link] for interaction with the main network or a [link href=pages/installation/Testnet]Testnet Node[/link] for local development.
+Install either a [link href=node/pages/installation/Mainnet]Mainnet Node[/link] for interaction with the main network or a [link href=node/pages/installation/Testnet]Testnet Node[/link] for local development.

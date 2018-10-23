@@ -25,15 +25,6 @@ const regex = /\[[^\/]?([^\]\s]*)((\s?([^\s=]+)=([^\s=]+))*)\]([^(]?[^\[]*)\[\/\
  */
 
 const macros = {
-  toc: () => {
-    return `
-{{<this.props.TableOfContents>}}
-## toc
-
-## end toc
-{{</this.props.TableOfContents>}}
-    `
-  },
   link: (content, { href }) => {
     return `{{ <props.Link href="${href}">${content}</props.Link> }}`
   }

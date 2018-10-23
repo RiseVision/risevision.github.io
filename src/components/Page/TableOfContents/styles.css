@@ -1,9 +1,8 @@
 .container {
-  position: absolute;
-  width: 13em;
-  right: 1em;
-  top: 2em;
+  padding-top: 3em;
   text-indent: -0.5em;
+  padding-left: 2em;
+  flex-shrink: 0;
 }
 
 .title {
@@ -13,20 +12,17 @@
 }
 
 .links {
-  & :global(ul) {
-    padding-left: 1em;
-  }
+  padding-left: 0;
+  list-style: none;
+}
 
-  & > h2,
-  & > h3 {
-    display: none;
-  }
+.link {
+  color: #4a90e2; /* @TODO make global color variable */
+  text-decoration: none;
+  line-height: 1.5em;
+}
 
-  & :global([href="#end-toc"]) {
-    display: none;
-  }
-
-  & > ul {
-    padding: 0;
-  }
+.spacer {
+  display: inline-block;
+  width: 1em;
 }

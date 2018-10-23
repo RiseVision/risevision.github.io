@@ -1,0 +1,7 @@
+@value top-bar-height from '../../styles/variables/layout';
+
+.sticky {
+  height: auto;
+  position: sticky;
+  top: top-bar-height;
+}

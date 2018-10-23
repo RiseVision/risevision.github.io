@@ -63,7 +63,12 @@ module.exports = {
     rules: [
       {
         test: /\.md$/,
-        use: [babelLoader, mdLoader, { loader: 'md-macro-loader' }]
+        use: [
+          babelLoader,
+          mdLoader,
+          { loader: 'md-macro-loader' },
+          { loader: 'toc-loader' }
+        ]
       },
       {
         test: /\.css$/,

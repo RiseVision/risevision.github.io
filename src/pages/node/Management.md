@@ -1,7 +1,5 @@
 # Manager.sh
 
-[toc][/toc]
-
 Managing your node is an important task. The new TypeScript core comes with some utilities that will help you perform normal operations such as starting, stopping, backing up and more.
 
 To access manager.sh script you just need to enter the installation folder (default: `~/rise`).

@@ -30,7 +30,7 @@ export const matchers: matchers = {
 };
 
 export const paths = {
-  INDEX: "GettingStarted"
+  INDEX: "Home"
 };
 
 const matchPath = (

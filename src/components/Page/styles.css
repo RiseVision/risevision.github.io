@@ -3,7 +3,18 @@
 .container {
   position: relative;
   animation: fadein 0.2s;
-  padding: 0 16em 4em 0;
+  padding: 0 1em 4em 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 50em;
+
+  & > div {
+    width: 100%;
+  }
 
   :global(a) {
     color: #4a90e2; /* @TODO make global color variable */

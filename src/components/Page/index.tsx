@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Loader } from "../Loader";
 import { Link } from "../Link";
-import { TableOfContents } from "./TableOfContents";
+import { TableOfContents, TOCItem } from "./TableOfContents";
 import {
   CancelablePromise,
   makeCancelable,
@@ -18,6 +18,10 @@ interface Props {
 
 interface State {
   Page?: typeof React.Component;
+  frontMatter?: {
+    toc?: boolean;
+  };
+  toc?: TOCItem[];
   styles?: typeof import("./styles.css");
   loading: boolean;
   error: string | null;
@@ -33,7 +37,7 @@ export class Page extends React.Component<Props, State> {
 
   render() {
     const { page, anchor, ...args } = this.props;
-    const { loading, error, Page, styles } = this.state;
+    const { loading, error, Page, styles, toc, frontMatter } = this.state;
     if (loading) {
       return <Loader />;
     }
@@ -42,7 +46,12 @@ export class Page extends React.Component<Props, State> {
     }
     return Page ? (
       <div className={styles!.container}>
-        <Page Link={Link} TableOfContents={TableOfContents} {...args} />
+        <div className={styles!.pageContainer}>
+          <Page Link={Link} {...args} />
+        </div>
+        {toc!.length > 1 && !(frontMatter!.toc === false) ? (
+          <TableOfContents toc={toc!} />
+        ) : null}
       </div>
     ) : null;
   }
@@ -81,12 +90,15 @@ export class Page extends React.Component<Props, State> {
       this.pending = makeCancelable(
         Promise.all([
           import(`../../pages/${this.props.page}.md`),
+          import(`../../constants/toc/${this.props.page}`),
           import("./styles.css")
         ])
       );
-      const [pageModule, styles] = await this.pending.promise;
+      const [pageModule, tocModule, styles] = await this.pending.promise;
       this.setState({
         Page: pageModule.default,
+        frontMatter: pageModule.frontMatter || {},
+        toc: tocModule.default || [],
         styles,
         loading: false,
         error: null
@@ -95,7 +107,6 @@ export class Page extends React.Component<Props, State> {
       if (e instanceof CanceledError) {
         return;
       }
-      console.log(e.class.name);
       this.setState({ loading: false, error: e });
     }
   }

@@ -1,7 +1,7 @@
 import { ConfigItem } from "../components/Link/List/helpers";
 
 export interface Section {
-  name: string;
+  name?: string;
   items: ConfigItem[];
 }
 
@@ -11,41 +11,45 @@ export interface TOC {
 
 export const tableOfContents: TOC = {
   sections: [
-    {
-      name: "Introduction",
-      items: [
+      {
+        items: [
         {
           name: "Getting Started",
-          page: "GettingStarted"
-        },
-        {
-          name: "Installation",
-          page: "Installation",
-          items: [
-            {
-              name: "Mainnet",
-              page: "installation/Mainnet"
-            },
-            {
-              name: "Testnet",
-              page: "installation/Testnet"
-            }
-          ]
-        },
-        {
-          name: "Node Management",
-          page: "NodeManagement",
-          items: [
-            {
-              name: "Folder Structure",
-              page: "nodeManagement/FolderStructure"
-            }
-          ]
+          page: "Home"
         },
         {
           name: "Lightpaper",
           external: "https://downloads.rise.vision/lightpaper.pdf"
         }
+        ]
+      },
+    {
+      name: "Node",
+      items: [
+        {
+          name: "Installation",
+          page: "node/Installation",
+          items: [
+            {
+              name: "Mainnet",
+              page: "node/installation/Mainnet"
+            },
+            {
+              name: "Testnet",
+              page: "node/installation/Testnet"
+            }
+          ]
+        },
+        {
+          name: "Node Management",
+          page: "node/Management",
+          items: [
+            {
+              name: "Folder Structure",
+              page: "node/management/FolderStructure"
+            }
+          ]
+        },
       ]
     },
     {

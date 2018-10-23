@@ -1,7 +1,5 @@
 # Folder Structure
 
-[toc][/toc]
-
 This document will describe the node folder structure. It will not describe the "source" node structure.
 
 When installing the node you'll end up with the `rise` folder containing the following subfolders:
