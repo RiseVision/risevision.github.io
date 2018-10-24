@@ -3,7 +3,6 @@ const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const rehypeHighlight = require('rehype-highlight')
 const remarkSlug = require('remark-slug')
-const remarkToc = require('remark-toc')
 const remarkNormalizeHeadings = require('remark-normalize-headings')
 
 const tsLoader = {
@@ -36,7 +35,7 @@ const mdLoader = {
   loader: '@hugmanrique/react-markdown-loader',
   options: {
     rehypePlugins: [rehypeHighlight],
-    remarkPlugins: [remarkNormalizeHeadings, remarkSlug, remarkToc]
+    remarkPlugins: [remarkNormalizeHeadings, remarkSlug]
   }
 }
 
@@ -61,7 +60,12 @@ module.exports = {
     rules: [
       {
         test: /\.md$/,
-        use: [babelLoader, mdLoader, { loader: 'md-macro-loader' }]
+        use: [
+          babelLoader,
+          mdLoader,
+          { loader: 'md-macro-loader' },
+          { loader: 'toc-loader' }
+        ]
       },
       {
         test: /\.css$/,

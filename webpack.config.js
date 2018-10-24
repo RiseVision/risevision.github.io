@@ -3,7 +3,6 @@ const webpack = require('webpack')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const rehypeHighlight = require('rehype-highlight')
 const remarkSlug = require('remark-slug')
-const remarkToc = require('remark-toc')
 const remarkNormalizeHeadings = require('remark-normalize-headings')
 
 const tsLoader = {
@@ -38,7 +37,7 @@ const mdLoader = {
   loader: '@hugmanrique/react-markdown-loader',
   options: {
     rehypePlugins: [rehypeHighlight],
-    remarkPlugins: [remarkNormalizeHeadings, remarkSlug, remarkToc]
+    remarkPlugins: [remarkNormalizeHeadings, remarkSlug]
   }
 }
 

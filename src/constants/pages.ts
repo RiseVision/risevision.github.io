@@ -11,8 +11,8 @@ export interface TOC {
 
 export const tableOfContents: TOC = {
   sections: [
-      {
-        items: [
+    {
+      items: [
         {
           name: "Getting Started",
           page: "Home"
@@ -21,8 +21,33 @@ export const tableOfContents: TOC = {
           name: "Lightpaper",
           external: "https://downloads.rise.vision/lightpaper.pdf"
         }
-        ]
-      },
+      ]
+    },
+    {
+      name: "Protocol",
+      items: [
+        {
+          name: "Consensus",
+          page: "protocol/Consensus"
+        },
+        {
+          name: "Identity",
+          page: "protocol/Identity"
+        },
+        {
+          name: "Blocks",
+          page: "protocol/Blocks"
+        },
+        {
+          name: "Transactions",
+          page: "protocol/Transactions"
+        },
+        {
+          name: "Peer-to-Peer",
+          page: "protocol/PeerToPeer"
+        }
+      ]
+    },
     {
       name: "Node",
       items: [
@@ -49,7 +74,7 @@ export const tableOfContents: TOC = {
               page: "node/management/FolderStructure"
             }
           ]
-        },
+        }
       ]
     },
     {

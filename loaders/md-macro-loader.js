@@ -1,5 +1,5 @@
 const { split, map, reject, isEmpty, fromPairs } = require('lodash/fp')
-const regex = /\[[^\/]?([^\]\s]*)((\s?([^\s=]+)=([^\s=]+))*)\]([^(]?[^\[]*)\[\/\1\]/gi
+const regex = /\[[^\/]?([^\]\s]*)((\s?([^\s=]+)=([^\s=]+))*)\]([\S\s]*?)\[\/\1\]/gi
 
 /**
  * USAGE
@@ -25,6 +25,9 @@ const regex = /\[[^\/]?([^\]\s]*)((\s?([^\s=]+)=([^\s=]+))*)\]([^(]?[^\[]*)\[\/\
  */
 
 const macros = {
+  table: content => {
+    return `{{ <div className="table-wrapper"> }}${content}{{ </div> }}`
+  },
   link: (content, { href }) => {
     return `{{ <props.Link href="${href}">${content}</props.Link> }}`
   }
