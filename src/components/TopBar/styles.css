@@ -21,6 +21,7 @@
   padding-left: 1em;
   height: 100%;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .logo:hover {
