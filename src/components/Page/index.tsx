@@ -76,7 +76,8 @@ export class Page extends React.Component<Props, State> {
     ) {
       const element = document.getElementById(this.props.anchor || "");
       if (element && this.props.container) {
-        const y = element.getBoundingClientRect().top + this.props.container.scrollTop;
+        const y =
+          element.getBoundingClientRect().top + this.props.container.scrollTop;
         this.props.container.scroll({
           top: Math.max(0, y - 100),
           behavior: "smooth"
