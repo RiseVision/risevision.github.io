@@ -1,4 +1,5 @@
 @value top-bar-height from '../../styles/variables/layout.css';
+@value rise-icon-collapse from '../../styles/variables/media.css';
 
 .container {
   align-items: center;
@@ -41,4 +42,11 @@
 }
 
 .logoSubheader {
+}
+
+@media only screen and (max-width: rise-icon-collapse) {
+  .logoSeparator,
+  .logoSubheader {
+    display: none;
+  }
 }

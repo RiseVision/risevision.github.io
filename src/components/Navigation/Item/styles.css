@@ -1,4 +1,5 @@
 @value text-color from '../../../styles/variables/colors';
+@value fly-out-collapse from '../../../styles/variables/media';
 
 @define-mixin inactive-menu {
   top: 3.5em;
@@ -14,10 +15,6 @@
 
 .container {
   position: relative;
-}
-
-.name {
-  line-height: 1.5em;
 }
 
 .active,
@@ -49,10 +46,48 @@
   }
 }
 
-.name:hover {
-  cursor: pointer;
+.name {
+  line-height: 1.5em;
 
-  & + .items {
-    @mixin active-menu;
+  &:hover {
+    cursor: pointer;
+
+    & + .items {
+      @mixin active-menu;
+    }
+  }
+}
+
+@media only screen and (max-width: fly-out-collapse) {
+  .items {
+    opacity: 1 !important;
+    pointer-events: initial !important;
+    position: static;
+    padding: 0.5em 0 0 1em;
+    list-style: none;
+    box-shadow: none;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      @mixin inactive-menu;
+    }
+
+    & > li > a {
+      padding: 0;
+      line-height: 3em;
+      color: text-color;
+    }
+  }
+
+  .name {
+    line-height: 3em;
+
+    &:hover {
+      cursor: pointer;
+
+      & + .items {
+        @mixin inactive-menu;
+      }
+    }
   }
 }

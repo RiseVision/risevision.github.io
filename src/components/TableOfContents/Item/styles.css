@@ -1,3 +1,5 @@
+@value fly-out-collapse from '../../../styles/variables/media';
+
 .container {
 }
 
@@ -23,4 +25,10 @@
 .active + .items,
 .activeItems {
   display: block;
+}
+
+@media only screen and (max-width: fly-out-collapse) {
+  .name {
+    line-height: 2.5em;
+  }
 }

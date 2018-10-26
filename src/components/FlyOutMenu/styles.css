@@ -1,0 +1,44 @@
+@value fly-out-collapse from '../../styles/variables/media';
+@value menu-width: 26em;
+@value menu-offset: -26em;
+
+.closeIcon {
+  display: inline-block;
+  position: fixed;
+  padding: 1.5em;
+  top: 0;
+  right: 0;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1000;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: fly-out-collapse) {
+  .container {
+    position: absolute;
+    top: 0;
+    right: menu-offset;
+    background: #fff;
+    z-index: 100;
+    height: 100vh;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    width: menu-width;
+    max-width: 100%;
+    transition: right 0.3s ease-in-out;
+    overflow-y: auto;
+
+    &.open {
+      right: 0;
+
+      .closeIcon {
+        pointer-events: initial;
+        opacity: 1;
+      }
+    }
+  }
+}

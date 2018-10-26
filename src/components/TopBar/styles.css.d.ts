@@ -1,4 +1,5 @@
 export const topBarHeight: string;
+export const riseIconCollapse: string;
 export const container: string;
 export const logo: string;
 export const logoText: string;

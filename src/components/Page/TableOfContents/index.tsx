@@ -22,7 +22,10 @@ export class TableOfContents extends React.Component<Props> {
           {map(({ id, depth, value }) => {
             const indent =
               depth > 1
-                ? map(x => <div className={styles.spacer} />, range(2, depth))
+                ? map(
+                    depth => <div className={styles.spacer} key={depth} />,
+                    range(2, depth)
+                  )
                 : null;
             return (
               <li key={id}>

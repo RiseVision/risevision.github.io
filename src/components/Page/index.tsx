@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Loader } from "../Loader";
 import { Link } from "../Link";
+import classNames from "classnames";
 import { TableOfContents, TOCItem } from "./TableOfContents";
 import {
   CancelablePromise,
@@ -13,6 +14,7 @@ interface Props {
   page: string;
   anchor?: string;
   tick: number;
+  container: HTMLDivElement | null;
   [prop: string]: any;
 }
 
@@ -36,7 +38,7 @@ export class Page extends React.Component<Props, State> {
   }
 
   render() {
-    const { page, anchor, ...args } = this.props;
+    const { page, anchor, container, ...args } = this.props;
     const { loading, error, Page, styles, toc, frontMatter } = this.state;
     if (loading) {
       return <Loader />;
@@ -44,14 +46,17 @@ export class Page extends React.Component<Props, State> {
     if (error) {
       return <div>{error.toString()}</div>;
     }
+    const hasToc = toc!.length > 1 && !(frontMatter!.toc === false);
     return Page ? (
       <div className={styles!.container}>
-        <div className={styles!.pageContainer}>
+        <div
+          className={classNames(styles!.pageContainer, {
+            [styles!.withToc]: hasToc
+          })}
+        >
           <Page Link={Link} {...args} />
         </div>
-        {toc!.length > 1 && !(frontMatter!.toc === false) ? (
-          <TableOfContents toc={toc!} />
-        ) : null}
+        {hasToc ? <TableOfContents toc={toc!} /> : null}
       </div>
     ) : null;
   }
@@ -70,9 +75,9 @@ export class Page extends React.Component<Props, State> {
       this.props.tick !== tick
     ) {
       const element = document.getElementById(this.props.anchor || "");
-      if (element) {
-        const y = element.getBoundingClientRect().top + window.scrollY;
-        window.scroll({
+      if (element && this.props.container) {
+        const y = element.getBoundingClientRect().top + this.props.container.scrollTop;
+        this.props.container.scroll({
           top: Math.max(0, y - 100),
           behavior: "smooth"
         });
