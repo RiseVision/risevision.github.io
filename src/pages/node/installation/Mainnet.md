@@ -1,7 +1,7 @@
 # Mainnet Installation
 
 **Important**: You must login in your non-root user. Refer to the [link
-href=pages/node/Installation!requirements]installation requirements[/link] for
+href="pages/node/Installation!requirements"]installation requirements[/link] for
 more information.
 
 ```
@@ -29,5 +29,5 @@ to sync with the network.
 
 If you wish to you can always use a verified snapshot that will significantly
 drop the time needed for your node to get up in sync. For this please refer to [link
-href=pages/node/Management!restore-verified-snapshot]Managing your
+href="pages/node/Management!restore-verified-snapshot"]Managing your
 node[/link]

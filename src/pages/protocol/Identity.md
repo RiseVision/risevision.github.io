@@ -34,7 +34,7 @@ network. Because the corresponding public key is also included in the
 transaction, the verifier can be certain that the creator of the transaction
 owns the associated private key, thereby verifying its authenticity. More
 information about how this is done can be found in [link
-href=pages/protocol/Transactions]Transactions [/link]
+href="pages/protocol/Transactions"]Transactions [/link]
 
 ## Accounts
 
@@ -43,7 +43,7 @@ holder can receive RISE tokens sent to his or her account using his or her
 AccountID derived for the Public Key as described below. Using the Private Key,
 new transactions from the account can then be authored to send RISE tokens to
 other accounts or perform special functions like voting as described in [link
-href=pages/protocol/Transactions]Transactions[/link]. A JSON representation of
+href="pages/protocol/Transactions"]Transactions[/link]. A JSON representation of
 an account is as follows.
 
 ```json

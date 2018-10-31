@@ -13,7 +13,7 @@ number of Delegates elected and producing blocks is fixed at 101, and each
 stakeholder is allowed to vote for up to 101 delegates. The weight of the
 stakeholder's vote is based upon how many RISE tokens that stakeholder
 possesses. A RISE token holder can vote for a delegate or many delegates by
-creating [link href=pages/protocol/Transactions!vote-transaction]a Vote
+creating [link href="pages/protocol/Transactions!vote-transaction"]a Vote
 Transaction[/link].
 
 Although there are many consensus algorithms in development across various
@@ -31,7 +31,7 @@ overall transaction speed and efficiency.
 A Delegate is a type of RISE account that has the ability to be elected to
 generate and validate blocks on the blockchain. Any account has the ability to
 register as a delegate by creating [link
-href=pages/protocol/Transactions!register-delegate-transaction]a Register
+href="pages/protocol/Transactions!register-delegate-transaction"]a Register
 Delegate Transaction[/link] and submitting it to the network. Once validated,
 token holders can vote for the delegate to become a block producer. Only the
 top 101 delegates with the most votes weighted by stake are allowed to actually
@@ -117,6 +117,6 @@ active delegate will receive double the reward as it must generate two blocks.
 
 All transactions on the network require a fee in order to prevent spam from
 flooding the network (More information on the Fee Schedule is covered in [link
-href=pages/protocol/Transactions]Transactions[/link]). All transactional fees
+href="pages/protocol/Transactions"]Transactions[/link]). All transactional fees
 at the end of the round are aggregated and then split between all active
 participants in the last round.

@@ -1,12 +1,12 @@
 const { split, map, reject, isEmpty, fromPairs } = require('lodash/fp')
-const regex = /\[[^\/]?([^\]\s]*)((\s?([^\s=]+)=([^\s=]+))*)\]([\S\s]*?)\[\/\1\]/gi
+const regex = /\[[^\/]?([^\]\s]*)((\s?([^\s=]+)="([^\s=]+)")*?)\]([\S\s]*?)\[\/\1\]/gi
 
 /**
  * USAGE
  *
  * Include macros in your markdown in the following format:
  *
- * [tag prop1=data prop2=another]content markdown[/tag]
+ * [tag prop1="data" prop2="another"]content markdown[/tag]
  *
  * `macro` (in this case "tag") gets mapped to a function in `macros` below
  * with the following type signature
@@ -14,7 +14,7 @@ const regex = /\[[^\/]?([^\]\s]*)((\s?([^\s=]+)=([^\s=]+))*)\]([\S\s]*?)\[\/\1\]
  * (
  *   content: string,             # content in macro ("content markdown")
  *   props: { [string]: string }, # props object ({ prop1: "data", prop2: "another" })
- *   original: string,            # original macro string found ("[tag prop=data prop2=another]content markdown[/tag]")
+ *   original: string,            # original macro string found ("[tag prop="data" prop2="another"]content markdown[/tag]")
  *   position: integer,           # position in source document
  *   context: string              # source document
  * } => string                    # replacement string
@@ -29,8 +29,23 @@ const macros = {
     return `{{ <div className="table-wrapper"> }}${content}{{ </div> }}`
   },
   link: (content, { href }) => {
-    return `{{ <props.Link href="${href}">${content}</props.Link> }}`
+    console.log(content, href)
+    const x = `{{ <props.Link href="${href}">${content}</props.Link> }}`
+    console.log(x)
+    return x
   }
+}
+
+const gatherProps = propString => {
+  const props = {}
+  const propsRegex = /(\S+)="([\s\S]*?)"/gi
+  let match = propsRegex.exec(propString)
+  while (match) {
+    let [_m, key, value] = match
+    props[key] = value
+    match = propsRegex.exec(propString)
+  }
+  return props
 }
 
 const replacer = (original, macro, propString, ...rest) => {
@@ -40,9 +55,7 @@ const replacer = (original, macro, propString, ...rest) => {
   const content = rest[rest.length - 3]
   const position = rest[rest.length - 2]
   const context = rest[rest.length - 1]
-  const props = fromPairs(
-    map(prop => split('=', prop), reject(isEmpty, split(/\s+/, propString)))
-  )
+  const props = gatherProps(propString)
   return macros[macro](content, props, original, position, context)
 }
 

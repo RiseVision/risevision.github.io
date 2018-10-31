@@ -31,19 +31,19 @@ export const tableOfContents: TOC = {
           page: "protocol/Consensus"
         },
         {
-          name: "Identity",
+          name: "Accounts",
           page: "protocol/Identity"
-        },
-        {
-          name: "Blocks",
-          page: "protocol/Blocks"
         },
         {
           name: "Transactions",
           page: "protocol/Transactions"
         },
         {
-          name: "Peer-to-Peer",
+          name: "Blocks",
+          page: "protocol/Blocks"
+        },
+        {
+          name: "Peers",
           page: "protocol/PeerToPeer"
         }
       ]
