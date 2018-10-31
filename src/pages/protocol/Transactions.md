@@ -50,10 +50,11 @@ nodes on the network. To sign a transaction first the sender must build the
 transaction data block according to the transaction type. Then the sender
 generates a hash of the transaction using the SHA-256 hashing algorithm. The
 sender then generates a signature by passing the generated hash to an Ed25519
-signature algorithm using his / her key-pair (`[TODO add link to Security]`).
-The generated signature is then appended to the transaction data block. This
-process is repeated if the sender has a second key, or if the account is a
-multisignature account.
+signature algorithm using his / her [link
+href="pages/protocol/Identity!key-pairs"]key-pair[/link]. The generated
+signature is then appended to the transaction data block. This process is
+repeated if the sender has a second key, or if the account is a multisignature
+account.
 
 ### TransactionIDs
 
@@ -121,8 +122,10 @@ A Second Signature Transaction (or `Type 1` Transaction) is used to add
 a second signature to an address. The second signature adds a second layer of
 security, by signing your transaction data block as well as your first
 signature. To generate a second key-pair, the original passphrase as well as
-a new passphrase must be used [@TODO link to security]. To build the
-transaction data block the following fields must be filled in.
+a new passphrase must be used (see [link
+href="pages/protocol/Identity!key-pairs"]Key Pair Generation[/link] for more
+information). To build the transaction data block the following fields must be
+filled in.
 
 [table]
 
@@ -170,11 +173,12 @@ An example Second Signature Transaction JSON object looks like the following:
 
 ## Register Delegate Transaction
 
-A Register Delegate Transaction (or `Type 2`) transaction is used to register
-an account as a delegate [@TODO Link to Consensus algorithm]. To register as
-a delegate the sender must choose a username to register on the blockchain. The
-username can be between 1 and 20 characters. To fill in the transaction data
-block therefore the following fields must be filled in.
+A Register Delegate Transaction (or `Type 2`) transaction is used to [link
+href="pages/protocol/Consensus!delegates"]register an account as
+a delegate[/link]. To register as a delegate the sender must choose a username
+to register on the blockchain. The username can be between 1 and 20 characters.
+To fill in the transaction data block therefore the following fields must be
+filled in.
 
 [table]
 
@@ -237,7 +241,7 @@ A Vote Transaction can hold a maximum of 33 votes, thereby a transaction block i
 | RecipientID       | `64`         | AccountID of the Sender                     |
 | Amount            | `64`         | `0`                                         |
 | Sender Public Key | `256`        | Public Key of the Sender                    |
-| Delegate Votes    | `260 * <=33` | Array of Votes                              |
+| Delegate Votes    | `520 * <=33` | Array of Votes                              |
 
 [/table]
 
@@ -273,4 +277,70 @@ An example Vote Transaction JSON object looks like the following:
 
 ## Multisignature Registration Transaction
 
-A Multisignature Registration Transaction (or `Type 4` Transaction)
+A Multisignature Registration Transaction (or `Type 4` Transaction) is used to
+register a new [link
+href="pages/protocol/Identity!multisignature-accounts"]Multisignature
+Account[/link] which requires multiple signatures from various public keys. The
+registration transaction specifies which key-pairs are allowed to sign the
+transaction, as well as a minimum number of signatures for the transaction to
+be considered valid. A maximum of 15 keys may be added to a key group for
+a multisignature account. A list of public keys can be added or removed from
+the multisignature account using the following format:
+
+* `'+' + Public Key` to add the public key to the list of valid public keys
+* `'-' + Public Key` to remove the public key from the list of valid public keys
+
+In addition, the multisignature transaction must specify a lifetime for future
+transactions. That is the number of hours a transaction can wait in the [link
+href="pages/protocol/PeerToPeer!transaction-pool"]Transaction Pool[/link] for
+valid keys to sign the transaction. Therefore to build the transaction the
+following fields must be filled out.
+
+[table]
+
+| Name              | Size (bits)  | Value                                                    |
+|-------------------|--------------|----------------------------------------------------------|
+| Type              | `8`          | `2`                                                      |
+| Timestamp         | `32`         | Seconds since Epoch Time                                 |
+| RecipientID       | `64`         | AccountID of the Sender                                  |
+| Amount            | `64`         | `0`                                                      |
+| Sender Public Key | `256`        | Public Key of the Sender                                 |
+| Min               | `8`          | Minimum number of Key Pairs needed to sign a Transaction |
+| Lifetime          | `8`          | Time to live in Transaction Pool in Hours                |
+| Keys Group        | `520 * <=15` | Public Keys to add or remove from Account                |
+
+[/table]
+
+After the transaction data block has been built, it can then be signed using
+the Signature algorithm as described in [Signing
+Transactions](#signing-transactions), and a TransactionID can be generated as
+described in [TransactionIDs](#transaction-ids) above. The final step of the
+process is to compute the current fee for the Transaction Type (in this case 5
+RISE). After this, the transaction is ready to be broadcast to the network as
+described in [Broadcasting Transactions](#broadcasting-transactions) above.
+
+An example Vote Transaction JSON object looks like the following:
+
+```json
+{
+    "id": TransactionID,
+    "type": 4,
+    "timestamp": Seconds since Epoch,
+    "senderPublicKey": Sender Public Key,
+    "senderId": Sender RISE AccountID,
+    "recipientId": Sender RISE AccountID,
+    "amount": 0,
+    "fee": 500000000,
+    "signature": Signature,
+    "asset": {
+        "multisignature" {
+            "min": Min,
+            "lifetime": Lifetime,
+            "keysgroup": [
+                Array of Public Key Additions / Removals
+            ]
+        }
+    }
+    ...
+}
+```
