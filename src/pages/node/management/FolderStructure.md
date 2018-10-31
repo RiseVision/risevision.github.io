@@ -36,6 +36,8 @@ The `node_config.json` is particularly helpful for **forging delegates**. Inside
 }
 ```
 
+To see a complete list of configuration options, refer to [link href="pages/node/management/Configuration"]the Advanced Configuration Page[/link]
+
 ## logs
 
 Logs live under the logs folder. You can inspect all the logs via `tail` or `cat`.

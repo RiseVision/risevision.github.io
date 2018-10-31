@@ -29,10 +29,7 @@ const macros = {
     return `{{ <div className="table-wrapper"> }}${content}{{ </div> }}`
   },
   link: (content, { href }) => {
-    console.log(content, href)
-    const x = `{{ <props.Link href="${href}">${content}</props.Link> }}`
-    console.log(x)
-    return x
+    return `{{ <props.Link href="${href}">${content}</props.Link> }}`
   }
 }
 

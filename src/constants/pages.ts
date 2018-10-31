@@ -72,8 +72,29 @@ export const tableOfContents: TOC = {
             {
               name: "Folder Structure",
               page: "node/management/FolderStructure"
+            },
+            {
+              name: "Advanced Configuration",
+              page: "node/management/Configuration"
             }
           ]
+        }
+      ]
+    },
+    {
+      name: "Quick Start",
+      items: [
+        {
+          name: "Introduction",
+          page: "quick-start/Introduction"
+        },
+        {
+          name: "Create an Account",
+          page: "quick-start/CreateAnAccount"
+        },
+        {
+          name: "Create a Transaction",
+          page: "quick-start/CreateATransaction"
         }
       ]
     },
