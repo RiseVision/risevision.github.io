@@ -9417,9 +9417,11 @@
         "parameters": [
           {
             "in": "query",
-            "name": "",
+            "name": "transactions.getTransactions",
             "required": false,
-            "schema": {}
+            "schema": {
+              "$ref": "#/components/schemas/transactions.getTransactions"
+            }
           }
         ],
         "responses": {

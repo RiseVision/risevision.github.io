@@ -95,6 +95,10 @@ export const tableOfContents: TOC = {
         {
           name: "Create a Transaction",
           page: "quick-start/CreateATransaction"
+        },
+        {
+          name: "Inspecting Transactions",
+          page: "quick-start/PollingTransactions"
         }
       ]
     },

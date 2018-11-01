@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{265:function(e,t,d){"use strict";d.r(t),t.default=[{depth:1,value:"Folder Structure",id:"folder-structure"},{depth:2,value:"etc",id:"etc"},{depth:2,value:"logs",id:"logs"},{depth:2,value:"data",id:"data"}]}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{265:function(t,n,e){"use strict";e.r(n),n.default=[{depth:1,value:"Testnet Installation",id:"testnet-installation"}]}}]);

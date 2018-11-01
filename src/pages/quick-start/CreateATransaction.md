@@ -124,8 +124,8 @@ To send our transaction we simply use the Transactions API's `put` method.
 
 ```javascript
 rise.transactions.put(signedTx)
-    .then((res) => { console.log(res) })
-    .catch((err) => { console.error(err) })
+    .then(function(res) { console.log(res); })
+    .catch(function(err) { console.error(err); })
 ```
 
 The RISE API Wrapper returns a promise that we handle with `then` on
