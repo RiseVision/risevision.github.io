@@ -18,5 +18,10 @@ export default [
     "depth": 2,
     "value": "Signing a Transaction",
     "id": "signing-a-transaction"
+  },
+  {
+    "depth": 2,
+    "value": "Broadcasting a Transaction",
+    "id": "broadcasting-a-transaction"
   }
 ]

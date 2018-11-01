@@ -101,3 +101,56 @@ would expect.
   asset: undefined
 }
 ```
+
+## Broadcasting a Transaction
+
+To broadcast the transaction we just created, all we need to do is send it to
+a node, using its REST API. The `risejs` client library provides us with an
+easy to use interface to do just that. First we start by including the library
+
+```javascript
+var rise = require('risejs').rise
+```
+
+This will create an API Wrapper for a node on the Mainnet. If we wanted to
+broadcast our transaction to a different node or network we would have to set
+our node address
+
+```javascript
+rise.nodeAddress = 'http://localhost:5566'
+```
+
+To send our transaction we simply use the Transactions API's `put` method.
+
+```javascript
+rise.transactions.put(signedTx)
+    .then((res) => { console.log(res) })
+    .catch((err) => { console.error(err) })
+```
+
+The RISE API Wrapper returns a promise that we handle with `then` on
+successfully transmitting to the node or `catch` on a network failure. Our
+transaction will most likely fail, because the sender has never received a
+transaction before, and you will receive a response like
+
+```javascript
+{
+  success: false,
+  error: 'Account 35285700575243917R not found in db.'
+}
+```
+
+However if the sender had enough RISE in his or her wallet, you should receive
+a successful response like.
+
+```json
+{
+  "success": true,
+  "accepted": [
+	"2159141135868240002"
+  ],
+  "invalid": []
+}
+```
+
+And in moments RISE would be transferred from the Sender to the Recipient!
