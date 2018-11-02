@@ -41,10 +41,6 @@ const mdLoader = {
   }
 }
 
-const svgLoader = {
-  loader: 'svg-react-loader'
-}
-
 module.exports = {
   devtool: 'inline-source-map',
   entry: ['./src/index.tsx'],
@@ -66,7 +62,7 @@ module.exports = {
     rules: [
       {
         test: /\.svg$/,
-        use: [babelLoader, svgLoader]
+        use: [babelLoader, { loader: 'svg-react-loader' }]
       },
       {
         test: /\.md$/,

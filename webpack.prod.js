@@ -59,6 +59,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        use: [babelLoader, { loader: 'svg-react-loader' }]
+      },
+      {
         test: /\.md$/,
         use: [
           babelLoader,
