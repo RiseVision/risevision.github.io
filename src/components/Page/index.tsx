@@ -93,6 +93,9 @@ export class Page extends React.Component<Props, State> {
   async loadPage() {
     this.setState({ loading: true, error: null });
     try {
+      if (this.pending) {
+        this.pending.cancel()
+      }
       this.pending = makeCancelable(
         Promise.all([
           import(`../../pages/${this.props.page}.md`),

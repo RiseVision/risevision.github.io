@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-around;
+  padding: 2em 0;
+}

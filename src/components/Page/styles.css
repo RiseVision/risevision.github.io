@@ -1,6 +1,6 @@
 @value toc-collapse from '../../styles/variables/media';
 
-@global-import 'highlight.js/styles/github.css';
+@global-import 'highlight.js/styles/hybrid.css';
 
 .container {
   position: relative;
@@ -105,11 +105,8 @@
   }
 
   :global(code) {
-    padding: 0.2em;
-    border-radius: 0.5em;
     padding: 0.2em 0.4em;
     border-radius: 0.4em;
-    background: hsla(0, 0%, 50%, 0.1);
   }
 
   :global(pre code) {
@@ -141,6 +138,10 @@
   :global(.table-wrapper) {
     width: 100%;
     overflow-x: auto;
+  }
+
+  :global(code:not(.hljs)) {
+    background: hsla(0, 0%, 50%, 0.1);
   }
 
   :global(table td[align="center"]) {

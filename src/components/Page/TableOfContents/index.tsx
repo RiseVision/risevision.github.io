@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as styles from "./styles.css";
 import { map, range } from "lodash/fp";
-import { Sticky } from "../../Sticky";
 
 export interface TOCItem {
   depth: number;

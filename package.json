@@ -47,6 +47,7 @@
     "remark-slug": "^5.1.0",
     "style-loader": "^0.23.1",
     "stylelint-config-standard": "^18.2.0",
+    "svg-react-loader": "^0.4.6",
     "ts-loader": "^5.2.1",
     "tslint": "^5.11.0",
     "typescript": "^3.1.1",
