@@ -9,6 +9,7 @@ import {
   makeCancelable,
   CanceledError
 } from "../../helpers/makeCancelable";
+import { isEmpty } from "lodash/fp";
 
 interface Props {
   page: string;
@@ -74,8 +75,17 @@ export class Page extends React.Component<Props, State> {
       this.props.anchor !== anchor ||
       this.props.tick !== tick
     ) {
+      this.scrollToAnchor();
+    }
+  }
+
+  scrollToAnchor() {
+    if (!this.props.container) {
+      return;
+    }
+    if (!isEmpty(this.props.anchor)) {
       const element = document.getElementById(this.props.anchor || "");
-      if (element && this.props.container) {
+      if (element) {
         const y =
           element.getBoundingClientRect().top + this.props.container.scrollTop;
         this.props.container.scroll({
@@ -83,6 +93,8 @@ export class Page extends React.Component<Props, State> {
           behavior: "smooth"
         });
       }
+    } else {
+      this.props.container.scroll({ top: 0 });
     }
   }
 
@@ -94,7 +106,7 @@ export class Page extends React.Component<Props, State> {
     this.setState({ loading: true, error: null });
     try {
       if (this.pending) {
-        this.pending.cancel()
+        this.pending.cancel();
       }
       this.pending = makeCancelable(
         Promise.all([

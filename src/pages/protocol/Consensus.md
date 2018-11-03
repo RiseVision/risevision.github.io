@@ -5,10 +5,10 @@ a consensus about which blocks to add to the blockchain. Delegated Proof of
 Stake is a consensus algorithm in which token holders have the ability to vote
 for a validator or a group of validators to decide on which transactions are
 valid and should be added. The system is designed to maintain irrefutable truth
-across the network, through the use of a digital democracy.
+across the network through the use of a digital democracy.
 
 Specific nodes called Delegates produce all of the Blocks on the network and
-are voted in by RISE token holders (the stakeholders of the RISE network). The
+are voted in by RISE token holders, the stakeholders of the RISE network. The
 number of Delegates elected and producing blocks is fixed at 101, and each
 stakeholder is allowed to vote for up to 101 delegates. The weight of the
 stakeholder's vote is based upon how many RISE tokens that stakeholder
@@ -35,13 +35,13 @@ href="pages/protocol/Transactions!register-delegate-transaction"]a Register
 Delegate Transaction[/link] and submitting it to the network. Once validated,
 token holders can vote for the delegate to become a block producer. Only the
 top 101 delegates with the most votes weighted by stake are allowed to actually
-validate and generate blocks. Delegates receive a fixed award for every block
-they produce [@TODO link to awards]
+validate and generate blocks. Delegates receive a [fixed award](#block-rewards) for
+every block they produce.
 
 A Delegate's role in the system therefore is to
 
 * Ensure the node is online and reachable
-* Collect 25 transactions from across the network into the block
+* Collect up to 25 transactions from across the network for the next block
 * Sign, validate and broadcast the block
 * Work with other delegates in reaching consensus
 
@@ -73,13 +73,13 @@ blockchain. Nodes which have the same broadhash therefore are in agreement
 about the current state of the blockchain. The hash is used to ensure that the
 majority nodes on the network reach consensus about the tip of the blockchain,
 thereby an important strategy to preventing forks in the blockchain. Peers on
-the network broadcast their broadhash to other peers via system headers as
-described in [@TODO p2p comm link]. Broadhash consensus is achieved by selected
-100 random peers attached to a node, and querying their broadhash. If 51 out of
-the 100 peers, have the same broadhash, than the node can be fairly certain
-that the network is in agreement about the blockchain state. Once consensus is
-achieved, delegates can generate the next block in their timeslot as described
-in [Forging & Rounds](#forging--rounds).
+the network broadcast their broadhash to other peers via [link
+href="pages/protocol/PeerToPeer!architecture"]system headers[/link]. Broadhash
+consensus is achieved by selected 100 random peers attached to a node, and
+querying their broadhash. If 51 out of the 100 peers, have the same broadhash,
+than the node can be fairly certain that the network is in agreement about the
+blockchain state. Once consensus is achieved, delegates can generate the next
+block in their timeslot as described in [Forging & Rounds](#forging--rounds).
 
 ## Forging Rewards
 
@@ -110,7 +110,7 @@ inflation rate will never go away. Current milestones are as follows:
 
 Currently the network is on Milestone 2, and therefore forging delegates
 receive 12 RISE per forged block. If a delegate misses its timeslot in the
-round (as described in [Forging & Rounds](#forging--rounds), then the next
+round (as described in [Forging & Rounds](#forging--rounds)), then the next
 active delegate will receive double the reward as it must generate two blocks.
 
 ### Network Fees

@@ -77,12 +77,12 @@ blockchain. To do this the generating node selects 20 random peers form its
 peer list and broadcasts the new block to them. After the peer receives the
 block, once it has checked that the block is new and verified the information
 in the block, the peer than relays the block to its peers. To prevent flooding
-the network with unnecessary information, blocks are only allowed to be relayed
-up to two times.
+the network with unnecessary information, blocks are only allowed to relayed
+up to two times (e.g. hop between three nodes in total).
 
 ## Transaction Propagation
 
-When unconfirmed transactions are sent to a node, they also must be propagated
+When unconfirmed transactions are sent to a node, they must also be propagated
 across the network so that forging delegates may include them in newly
 generated blocks. To do this every node holds a queue of up to 25 unconfirmed
 transactions. At a regular interval (currently every 5 seconds), nodes bundle

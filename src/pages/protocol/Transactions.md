@@ -15,9 +15,9 @@ features for later versions.
 | [Delegate](#register-delegate-transaction)           | `2`    | Register a Delegate                                   |  **✓**          |  25 RISE   |
 | [Vote](#vote-transaction)                            | `3`    | Vote for Delegates                                    |  **✓**          |  1 RISE    |
 | [Multisig](#multisignature-registration-transaction) | `4`    | Register a Multisignature                             |  **✓**          |  5 RISE    |
-| [DApp](#register-dapp-transaction)                   | `5`    | Register an Application                               |  -              |  -         |
-| [Transfer In](#transfer-rise-in-transaction)         | `6`    | Transfer RISE from the Mainchain into a Sidechain     |  -              |  -         |
-| [Transfer Out](#transfer-rise-out-transaction)       | `7`    | Transfer RISE out of a Sidechan back to the Mainchain |  -              |  -         |
+| DApp                                                 | `5`    | Register an Application                               |  -              |  -         |
+| Transfer In                                          | `6`    | Transfer RISE from the Mainchain into a Sidechain     |  -              |  -         |
+| Transfer Out                                         | `7`    | Transfer RISE out of a Sidechan back to the Mainchain |  -              |  -         |
 
 [/table]
 
@@ -319,7 +319,7 @@ process is to compute the current fee for the Transaction Type (in this case 5
 RISE). After this, the transaction is ready to be broadcast to the network as
 described in [Broadcasting Transactions](#broadcasting-transactions) above.
 
-An example Vote Transaction JSON object looks like the following:
+An example Multisignature Registration Transaction JSON object looks like the following:
 
 ```json
 {
