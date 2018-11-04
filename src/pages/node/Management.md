@@ -25,7 +25,7 @@ rise@risenode:~/rise$ ./manager.sh status
 
 ## Stopping node or dependency
 
-Some times you'd like to stop the node or a dependency. The manager can help you with that and will automatically stop the desired entity.
+Some times you'd like to stop the node or a dependency. The manager can help you with that and will automatically stop the desired entity. Valid entities are `node`, `db`, or `redis`
 
 Example:
 

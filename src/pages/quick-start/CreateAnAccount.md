@@ -8,7 +8,7 @@ RISE.
 
 ## Requirements
 
-We need to libraries to create an account:
+We need two libraries to create an account:
 
 * `bip39`: to create a mnemonic passphrase
 * `dpos-offline`: to create a wallet and send a transaction
@@ -31,9 +31,9 @@ although you can just as easily use these libraries in the browser
 ## Creating a mnemonic passphrase
 
 First step to creating an account is to create a mnemonic passpharase. This
-will act as a seed for our Public / Private Key Pair, as well as being
+will act as a seed for our Public / Private Key Pair, as well as
 something that is easily written down and stored somewhere safely. To begin
-first we need to grab the bip39 library.
+first we need to load the `bip39` library.
 
 ```javascript
 var bip39 = require("bip39")

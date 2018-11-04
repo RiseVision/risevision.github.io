@@ -151,6 +151,11 @@
   :global(table td[align="right"]) {
     text-align: right;
   }
+
+  :global(code.hljs::selection),
+  :global(code.hljs span::selection) {
+    background: #fff;
+  }
 }
 
 @keyframes fadein {

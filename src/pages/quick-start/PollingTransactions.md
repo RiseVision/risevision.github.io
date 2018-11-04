@@ -53,12 +53,11 @@ transactions found in the database
 
 There are two types of errors that can occur with our request: an application
 Error and a network Error. An application error occurs when we provide data
-that the node does not understand or does not fit the schema. A network error
-may occur when our request doesn't reach our server possibly due to poor
-connection, or if the node is offline. We have to handle these errors
-differently. First let's start with a network error. Network errors are
-automatically rejected in our callback, and therefore we have to catch them
-with the `catch` function.
+that the is invalid or does not fit the schema. A network error may occur when
+our request doesn't reach our server, possibly due to factors like poor
+connection. We have to handle these errors differently. First let's start with
+a network error. Network errors are automatically rejected in our Promise, and
+therefore we have to catch them with the `catch` function.
 
 ```javascript
 rise.transactions.getList()
@@ -94,9 +93,9 @@ rise.transactions.getList()
 Of course what we have so far simply lists 100 random transactions from the
 network. Our dashboard should just show the transactions relevant to our
 account, so let's go ahead and scope the transactions we are looking at by
-filtering them by either `senderId` or `recipientId`. For example sake let's
-use our account from [link herf="pages/quick-start/CreateAnAccount"]Creating an
-Account[/link], `35285700575243917R`.
+filtering them by either `senderId` or `recipientId`. For the following
+examples, let's use our account from [link
+herf="pages/quick-start/CreateAnAccount"]Creating an Account[/link].
 
 ```javascript
 var accountId = "35285700575243917R"
@@ -138,8 +137,9 @@ transactions.
 As you may have noticed from the result above, the `count` and the number of
 transactions that were returned do not match up. That is because the count
 represents the total number of transactions found, but those that are returned
-are limited by a `limit` parameter (in this case set to the default of 100). To
-get this we need to use an `offset` to get the next 100 items.
+are limited by a `limit` parameter (in this case, the default of 100). To get
+more transactions we can use an `offset` parameter. For example, to get the
+101st to 200th transaction, we can use an `offset` of 100.
 
 ```javascript
 rise.transactions.getList({
@@ -200,6 +200,7 @@ function getAccountTransactions(accountId, offset) {
             if (!res.success) {
                 return console.error(res.error);
             }
+
             if (res.transactions.length > 0) { // check if transactions returned
                 console.log(res);              // handle result
                 getAccountTransactions(        // get next batch of transactions
@@ -239,6 +240,7 @@ function getAccountTransactions(accountId, offset) {
             if (!res.success) {
                 return console.error(res.error);
             }
+
             if (res.transactions.length > 0) {
                 console.log(res);
                 getAccountTransactions(
@@ -246,6 +248,7 @@ function getAccountTransactions(accountId, offset) {
                     offset + res.transactions.length
                 );
             }
+
             setTimeout(function() {
                 getAccountTransactions(accountId, offset); // try our query again
             }, 5000);                                      // but delay it by 5 seconds
@@ -261,37 +264,36 @@ Done! We've just built a live transaction feed in a few lines of JavaScript!
 ## Bonus: Await / Async Syntax
 
 Because `risejs` is built upon modern TypeScript and ES6 libraries we can use
-modern ES6 functionality represent our recursive function as a simple loop.
+modern ES6 functionality to represent our recursive function as a simple loop.
 Here's an example of using `async` / `await` syntax to list transactions and
 poll for new ones.
 
 ```javascript
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const getAccountTransactions = async accountId => {
-  let offset = 0;
-  while (true) {
-    try {
-      const res = await rise.transactions.getList({
-        orderBy: "timestamp:asc",
-        offset: offset,
-        senderId: accountId,
-        recipientId: accountId
-      });
-      if (!res.success) {
-        return console.error(res.error);
-      }
-      if (res.transactions.length > 0) {
-        console.log(res.transactions);
-        offset += res.transactions.length;
-      } else {
-        await delay(5000);
-      }
-    } catch (err) {
-      return console.error(err);
-    }
-  }
-};
+let offset = 0;
 
-getAccountTransactions(accountId);
+while (true) {
+  try {
+    const res = await rise.transactions.getList({
+      orderBy: "timestamp:asc",
+      offset: offset,
+      senderId: accountId,
+      recipientId: accountId
+    });
+
+    if (!res.success) {
+      return console.error(res.error);
+    }
+
+    if (res.transactions.length > 0) {
+      console.log(res.transactions);
+      offset += res.transactions.length;
+    } else {
+      await delay(5000);
+    }
+  } catch (err) {
+    return console.error(err);
+  }
+}
 ```

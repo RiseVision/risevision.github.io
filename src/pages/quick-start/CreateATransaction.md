@@ -38,7 +38,7 @@ To create the transaction first initialize the transaction object
 var sendTx = new SendTx()
 ```
 
-Then add the required fields (See [link href="pages/protocol/Transactions!send-transaction"]The Transactions Page[/link] for more information on what all of these fields mean)
+Then add the required fields. Refer to [link href="pages/protocol/Transactions!send-transaction"]the Transactions Page[/link] for more information on what these fields mean.
 
 ```javascript
 sendTx
@@ -50,8 +50,8 @@ sendTx
 
 Notice that we are using the public key of the `wallet` that we created
 in [link href="pages/quick-start/CreateAnAccount"]Create an Account[/link]. This
-is important as we are going to need to later use the private key of the wallet
-to sign the transaction.
+is important as we are going to need the private key of the wallet
+to sign the transaction later.
 
 We also have to add a timestamp. A timestamp is the number of seconds since
 Epoch Time. Epoch time is a constant set at May 24, 2016 UTC Time or

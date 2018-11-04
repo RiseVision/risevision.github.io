@@ -24,27 +24,23 @@ export const tableOfContents: TOC = {
       ]
     },
     {
-      name: "Protocol",
+      name: "Quick Start",
       items: [
         {
-          name: "Consensus",
-          page: "protocol/Consensus"
+          name: "Introduction",
+          page: "quick-start/Introduction"
         },
         {
-          name: "Accounts",
-          page: "protocol/Identity"
+          name: "Create an Account",
+          page: "quick-start/CreateAnAccount"
         },
         {
-          name: "Transactions",
-          page: "protocol/Transactions"
+          name: "Create a Transaction",
+          page: "quick-start/CreateATransaction"
         },
         {
-          name: "Blocks",
-          page: "protocol/Blocks"
-        },
-        {
-          name: "Peers",
-          page: "protocol/PeerToPeer"
+          name: "Inspecting Transactions",
+          page: "quick-start/PollingTransactions"
         }
       ]
     },
@@ -82,23 +78,27 @@ export const tableOfContents: TOC = {
       ]
     },
     {
-      name: "Quick Start",
+      name: "Protocol",
       items: [
         {
-          name: "Introduction",
-          page: "quick-start/Introduction"
+          name: "Consensus",
+          page: "protocol/Consensus"
         },
         {
-          name: "Create an Account",
-          page: "quick-start/CreateAnAccount"
+          name: "Accounts",
+          page: "protocol/Identity"
         },
         {
-          name: "Create a Transaction",
-          page: "quick-start/CreateATransaction"
+          name: "Transactions",
+          page: "protocol/Transactions"
         },
         {
-          name: "Inspecting Transactions",
-          page: "quick-start/PollingTransactions"
+          name: "Blocks",
+          page: "protocol/Blocks"
+        },
+        {
+          name: "Peers",
+          page: "protocol/PeerToPeer"
         }
       ]
     },
