@@ -57,38 +57,55 @@ console.log(mnemonic)
 If this were being used for a real account, the passphrase should not be
 shared, and it should be written down in a safe and secure location
 
-## Creating a wallet
+## Creating a Key Pair
 
-To create a wallet we need the `mnemonic` from the previous step and the DPoS
-Offline library. First require the library
-
-```javascript
-var RiseWallet = require('dpos-offline').RiseWallet
-```
-
-Then simply create a new wallet by passing in your passphrase to the
-`RiseWallet` constructor
+To create a [link href="pages/protocol/Identity!key-pairs"]Key Pair[/link] we
+need to use the `dpos-offline` library. Let's get started by including the
+library in our current scope.
 
 ```javascript
-var wallet = = new RiseWallet(mnemonic)
+var dpos = require('dpos-offline').Rise
 ```
 
-We can then inspect the wallet to see that we indeed did create our Key Pair
-and a valid RISE address
+We can then use the `deriveKeypair` function to take our mnemonic, generate
+a seed and then create a public / private key pair.
 
 ```javascript
-console.log("Private Key: " + wallet.privKey)
-// 85c19bc76558690e66ad326bded50765614d6edeb4189c6a3eb1e909fdaa4421a8d2bdae2d911333fd83dbd6959026977fe7a5ddcdf85893d5faf517453b9000
-
-console.log("Public Key: " + wallet.publicKey)
-// a8d2bdae2d911333fd83dbd6959026977fe7a5ddcdf85893d5faf517453b9000
-
-console.log("Address: " + wallet.address)
-// 35285700575243917R
+var keyPair = dpos.deriveKeypair(mnemonic)
 ```
 
-Again if this were a real account the private key should not be shared with
-others
+If we inspect our `keyPair`, we'll see that our public and private key pair
+generated properly as Byte Buffer objects.
+
+```javascript
+console.log(keyPair.privateKey)
+// <Buffer 85 c1 9b c7 65 58 69 0e 66 ad 32 6b de d5 07 65 61 4d 6e de b4 18 9c 6a 3e b1 e9 09 fd aa 44 21 a8 d2 bd ae 2d 91 13 33 fd 83 db d6 95 90 26 97 7f e7 ... >
+// or as hex string: '85c19bc76558690e66ad326bded50765614d6edeb4189c6a3eb1e909fdaa4421a8d2bdae2d911333fd83dbd6959026977fe7a5ddcdf85893d5faf517453b9000'
+
+console.log(keyPair.publicKey)
+// <Buffer a8 d2 bd ae 2d 91 13 33 fd 83 db d6 95 90 26 97 7f e7 a5 dd cd f8 58 93 d5 fa f5 17 45 3b 90 00>
+// or as hex string: 'a8d2bdae2d911333fd83dbd6959026977fe7a5ddcdf85893d5faf517453b9000'
+```
+
+
+## Deriving an Address
+
+As described in the [link href="pages/protocol/Identity!accountids"]Account ID
+Generation Algorithm[/link] a RISE address is simply calculated from a public
+key. We can use the `calcAddress` function to take our generated public key and
+output a valid RISE address.
+
+```javascript
+var address = dpos.calcAddress(keyPair.publicKey)
+```
+
+And if we inspect `address` we should see a valid RISE address that we can
+control with the key pair we generated.
+
+```javascript
+console.log(address)
+// '35285700575243917R'
+```
 
 ## Next Steps
 

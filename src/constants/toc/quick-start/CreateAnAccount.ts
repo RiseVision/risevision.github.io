@@ -16,8 +16,13 @@ export default [
   },
   {
     "depth": 2,
-    "value": "Creating a wallet",
-    "id": "creating-a-wallet"
+    "value": "Creating a Key Pair",
+    "id": "creating-a-key-pair"
+  },
+  {
+    "depth": 2,
+    "value": "Deriving an Address",
+    "id": "deriving-an-address"
   },
   {
     "depth": 2,

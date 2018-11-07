@@ -11,13 +11,33 @@ export default [
   },
   {
     "depth": 2,
-    "value": "Creating the Transaction",
-    "id": "creating-the-transaction"
+    "value": "Creating a Send Transaction",
+    "id": "creating-a-send-transaction"
   },
   {
     "depth": 2,
-    "value": "Signing a Transaction",
-    "id": "signing-a-transaction"
+    "value": "Different kinds of Transactions",
+    "id": "different-kinds-of-transactions"
+  },
+  {
+    "depth": 2,
+    "value": "Customizing Transactions",
+    "id": "customizing-transactions"
+  },
+  {
+    "depth": 3,
+    "value": "Editing Fees",
+    "id": "editing-fees"
+  },
+  {
+    "depth": 3,
+    "value": "Editing a Timestamp",
+    "id": "editing-a-timestamp"
+  },
+  {
+    "depth": 2,
+    "value": "Second Signature",
+    "id": "second-signature"
   },
   {
     "depth": 2,
