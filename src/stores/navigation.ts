@@ -21,6 +21,7 @@ export enum handlers {
 
 type matcher = (root: string, path: string) => boolean;
 type matchers = { [key in handlers]: matcher };
+type pathObject = { root: string; path: string; bang: string };
 
 export const matchers: matchers = {
   [handlers.PAGES]: (root, _path) => /^pages$/i.test(root),
@@ -33,10 +34,19 @@ export const paths = {
   INDEX: "Home"
 };
 
+export const HOME_PATH_OBJECT = {
+  root: handlers.PAGES,
+  path: paths.INDEX,
+  bang: ""
+};
+
 const matchPath = (
   newPath: string
 ): { handler: handlers; path: string; bang: string } => {
-  const { root, path, bang } = splitPath(newPath);
+  const pathObject = splitPath(newPath);
+  const { root, path, bang } = isEmpty(pathObject.root)
+    ? HOME_PATH_OBJECT
+    : pathObject;
   const handler = reduce(
     (result: handlers, entry: [handlers, matcher]): handlers => {
       const [handler, matcher] = entry;
@@ -51,7 +61,7 @@ const matchPath = (
   return { handler, path, bang };
 };
 
-const splitPath = (path: string) => {
+const splitPath = (path: string): pathObject => {
   const pathWithoutHash = path[0] === "#" ? path.slice(1) : path;
   const [pathWithoutBang, ...bangParts] = pathWithoutHash.split("!");
   const [root, ...rest] = split("/", pathWithoutBang);
@@ -73,7 +83,7 @@ const joinPath = (root?: string, path?: string, bang?: string): string => {
   return result;
 };
 
-export const HOME = joinPath(handlers.PAGES, paths.INDEX);
+export const HOME = joinPath(HOME_PATH_OBJECT.root, HOME_PATH_OBJECT.path);
 
 export class NavigationStore {
   @observable
@@ -84,14 +94,11 @@ export class NavigationStore {
   bang = "";
   @observable
   tick = 0;
+  entryPath: string;
 
   constructor() {
-    this.navigate(
-      isEmpty(splitPath(window.location.hash).root)
-        ? HOME
-        : window.location.hash,
-      false
-    );
+    this.entryPath = window.location.hash;
+    this.navigate(this.entryPath, false);
     this.subscribe();
     this.syncDocumentTitle();
   }
@@ -118,10 +125,17 @@ export class NavigationStore {
       }
     });
     window.onpopstate = ({ state }) => {
-      if (!state || isEmpty(state.path)) {
+      let path = window.location.hash;
+      if (isEmpty(state)) {
+        if (path !== this.entryPath) {
+          return;
+        }
+      } else if (!isEmpty(state.path)) {
+        path = state.path;
+      } else {
         return;
       }
-      this.navigate(state.path, false);
+      this.navigate(path, false);
     };
   };
 
