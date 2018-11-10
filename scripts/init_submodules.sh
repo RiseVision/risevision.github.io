@@ -11,9 +11,9 @@ cd $ROOT
 git submodule update --recursive --remote
 
 # rise-node
-cd $ROOT/libraries/rise-node
-npm install
-npm run transpile
+cd $ROOT/libraries/rise-node-priv
+lerna bootstrap
+lerna run transpile --concurrency 20 --stream
 git stash
 
 # rise-ts

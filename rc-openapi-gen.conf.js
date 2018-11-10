@@ -1,12 +1,22 @@
 const fs = require('fs')
 
-const root = 'libraries/rise-node'
+const root = 'libraries/rise-node-priv'
 const package = require(`./${root}/package.json`)
 const README = fs.readFileSync(`./${root}/README.md`).toString()
+const packagesWithApis = [
+  'core-accounts',
+  'core-blocks',
+  'core-consensus-dpos',
+  'core-multisignature',
+  'core-p2p',
+  'core-secondsignature',
+  'core-transactions',
+  'core'
+].join('|')
 
 module.exports = {
-  controllers: `${root}/dist/apis/!(index|transport)*.js`,
-  schemas: `${root}/dist/schema/*.js,${root}/dist/schema/+(common|responses)/*.js`,
+  controllers: `${root}/packages/+(${packagesWithApis})/dist/apis/**/!(index)*.js,${root}/packages/+(${packagesWithApis})/dist/*Api.js`,
+  schemas: `${root}/packages/+(${packagesWithApis})/schema/*.json,${root}/packages/+(${packagesWithApis}|core-apis)/dist/schema/**/responses.js`,
   out: 'src/constants/swagger.json',
   static: {
     info: {

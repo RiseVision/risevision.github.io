@@ -17,11 +17,11 @@ then
 fi
 
 # rise-node
-rc_openapi_gen="$ROOT/libraries/rise-node/node_modules/rc-openapi-gen/cli.js"
+rc_openapi_gen="$ROOT/libraries/rise-node-priv/node_modules/.bin/rc-openapi-gen"
 cd $ROOT
 $rc_openapi_gen -c rc-openapi-gen.conf.js
 
-cd $ROOT/libraries/rise-node
+cd $ROOT/libraries/rise-node-priv
 git stash
 
 # rise-ts
