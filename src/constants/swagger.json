@@ -789,6 +789,8 @@
               "rank:asc",
               "vote:desc",
               "vote:asc",
+              "votesWeight:desc",
+              "votesWeight:asc",
               "address:desc",
               "address:asc",
               "username:desc",
@@ -797,10 +799,17 @@
               "publicKey:asc"
             ]
           },
+          "includeBanned": {
+            "type": "string",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
           "limit": {
             "type": "integer",
             "minimum": 1,
-            "maximum": 101
+            "maximum": 199
           },
           "offset": {
             "type": "integer",
@@ -9692,7 +9701,7 @@
           {
             "in": "query",
             "name": "id",
-            "required": false,
+            "required": true,
             "schema": {
               "$ref": "#/components/schemas/common.scalars.id"
             }
@@ -9776,7 +9785,7 @@
           {
             "in": "query",
             "name": "id",
-            "required": false,
+            "required": true,
             "schema": {
               "$ref": "#/components/schemas/common.scalars.id"
             }
@@ -9866,7 +9875,7 @@
           {
             "in": "query",
             "name": "id",
-            "required": false,
+            "required": true,
             "schema": {
               "$ref": "#/components/schemas/common.scalars.id"
             }

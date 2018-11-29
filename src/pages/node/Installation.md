@@ -41,7 +41,7 @@ eventually prompt you a message in case you're missing one of them.
 
 ## Next Steps
 
-Install either a [link href="node/pages/installation/Mainnet"]Mainnet Node[/link] for
+Install either a [link href="pages/node/installation/Mainnet"]Mainnet Node[/link] for
 interaction with the main network or
-a [link href="node/pages/installation/Testnet"]Testnet Node[/link] for
+a [link href="pages/node/installation/Testnet"]Testnet Node[/link] for
 local development.
