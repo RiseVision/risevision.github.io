@@ -37,6 +37,9 @@ module.exports = {
     languages: {
       javascript: {
         extension: 'js'
+      },
+      python: {
+        extension: 'py'
       }
     }
   }
