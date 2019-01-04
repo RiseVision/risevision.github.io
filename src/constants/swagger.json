@@ -7502,6 +7502,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.accounts\n  .getAccount('8093718274007724701R')\n  .then(function({ account }) {\n    console.log(account.balance) // 2973803650603\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    acc = api.accounts.get_account('8093718274007724701R')\n    print('Balance: {} RISE'.format(acc.balance.to_unit()))\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -7646,6 +7650,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.accounts\n  .getDelegates('8093718274007724701R')\n  .then(function({ delegates }) {\n    console.log(delegates[0].publicKey) // \"5d3c3c5cdead6...\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    delegates = api.accounts.get_account_delegates('8093718274007724701R')\n    print(delegates[0].public_key.hex())\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -7896,6 +7904,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.blocks\n  .getBlocks({ limit: 3 })\n  .then(function({ blocks }) {\n    console.log(blocks[0].id) // 1359353064084280533\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.blocks.get_blocks(limit=3)\n    print(res.blocks[0].block_id) # 1894880255589205181\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -7944,6 +7956,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.blocks\n  .getBlock('1359353064084280533')\n  .then(function({ block }) {\n    console.log(block.id) // 1359353064084280533\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    block = api.blocks.get_block('1359353064084280533')\n    print(block.height)\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -8142,6 +8158,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.blocks\n  .getFeeSchedule()\n  .then(function({ fees }) {\n    console.log(fees.send) // 10000000\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.blocks.get_fees()\n    print(res.fees.send) # 10000000\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -8332,6 +8352,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.blocks\n  .getStatus()\n  .then(function({ height }) {\n    console.log(height) // 1356378\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    status = api.blocks.get_status()\n    print(status.height) # 1356378\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -8380,6 +8404,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.delegates\n  .getList()\n  .then(function({ delegates }) {\n    console.log(delegates[0].username) // official_pool\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.delegates.get_delegates(limit=3)\n    print(res.delegates[0].username) # official_pool\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -8501,6 +8529,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.delegates\n  .getForgedByAccount(\n    '7067a911f3a4e13facbae9006b52a0c3ac9824bdd9f37168303152ae49dcb1c0'\n  )\n  .then(function({ forged }) {\n    console.log(forged) // 19066025346961\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import PublicKey, APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ndelegate_pk = PublicKey.fromhex('7067a911f3a4e13facbae9006b52a0c3ac9824bdd9f37168303152ae49dcb1c0')\ntry:\n    res = api.delegates.get_forged_by_account(delegate_pk)\n    print(res.forged) # 19066025346961\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -8549,6 +8581,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.delegates\n  .getByPublicKey(\n    '7067a911f3a4e13facbae9006b52a0c3ac9824bdd9f37168303152ae49dcb1c0'\n  )\n  .then(function({ delegate }) {\n    console.log(delegate.username) // official_pool\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import PublicKey, APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ndelegate_pk = PublicKey.fromhex('7067a911f3a4e13facbae9006b52a0c3ac9824bdd9f37168303152ae49dcb1c0')\ntry:\n    delegate = api.delegates.get_delegate(delegate_pk)\n    print(delegate.username) # official_pool\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -8597,6 +8633,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.delegates\n  .getVoters('a65a8160b1e0733f66d1f1a8f322c9af29b26d5e491a84d6e3ae0ec43e000446')\n  .then(function({ accounts }) {\n    console.log(accounts.length) // 5\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import PublicKey, APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ndelegate_pk = PublicKey.fromhex('a65a8160b1e0733f66d1f1a8f322c9af29b26d5e491a84d6e3ae0ec43e000446')\ntry:\n    voters = api.delegates.get_voters(delegate_pk)\n    print(len(voters)) # 5\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -8645,6 +8685,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.delegates\n  .search({ q: 'pool' })\n  .then(function({ delegates }) {\n    console.log(delegates[0].username) // official_pool\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    delegates = api.delegates.search_delegates('pool')\n    print(delegates[0].username) # official_pool\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -8679,6 +8723,12 @@
           "Delegates API"
         ],
         "description": "Retrieve the total number of registered delegates",
+        "x-code-samples": [
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    count = api.delegates.get_delegate_count()\n    print(count) # 5278\nexcept APIError as err:\n    print('API error:', err)\n"
+          }
+        ],
         "servers": [
           {
             "url": "https://wallet.rise.vision",
@@ -8725,6 +8775,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.delegates\n  .getNextForgers()\n  .then(function({ delegates }) {\n    console.log(delegates[0]) // a65a8160b1e07...\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.delegates.get_next_forgers()\n    print(res.delegates[0].hex()) # a65a8160b1e07...\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -8783,6 +8837,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.delegates\n  .getForgingStatus()\n  .then(function({ enabled }) {\n    console.log(enabled) // true\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('http://localhost:5566/api/')\ntry:\n    res = api.delegates.get_forging_status()\n    print(res.enabled) # true\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -9454,6 +9512,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.transactions\n  .getList()\n  .then(function({ count }) {\n    console.log(count) // 563381\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client, RegisterDelegateTx\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.transactions.get_transactions(\n        and__type_cls=RegisterDelegateTx,\n        limit=1,\n        order_by='height:desc',\n    )\n    print('Newest delegate:', res.transactions[0].tx.username)\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -9552,6 +9614,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.transactions\n  .put({\n    type: 0,\n    senderPublicKey: \"bf4809a1a08c9dffbba741f0c7b9f49145602341d5fa306fb3cd592d3e1058b3\",\n    senderId: \"1644223775232371040R\",\n    recipientId: \"3303015780877366956R\",\n    amount: 199533766861,\n    fee: 10000000\n    ...\n  })\n  .then(function({ accepted }) {\n    console.log(accepted.length) // 1\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client, PublicKey, Address, Amount, SendTx\n\napi = Client('https://wallet.rise.vision/api/')\n\ntx = SendTx(\n    sender_public_key=PublicKey.fromhex('bf4809a1a08c9dffbba741f0c7b9f49145602341d5fa306fb3cd592d3e1058b3'),\n    recipient=Address('3303015780877366956R'),\n    amount=Amount.from_unit('1995.33766861'),\n    fee=Amount.from_unit('0.1'),\n)\n# tx.signature = sk.sign(tx.to_bytes())\n\ntry:\n    res = api.transactions.add_transactions(tx)\n    print(len(res.accepted)) # 1\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -9590,6 +9656,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.transactions\n  .count()\n  .then(function({ confirmed }) {\n    console.log(confirmed) // 563381\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    counts = api.transactions.get_transaction_count()\n    print(counts.confirmed) # 563381\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -9638,6 +9708,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.transactions\n  .getTransaction('6920969059388666996')\n  .then(function({ transaction }) {\n    console.log(transaction.type) // 0\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    tx = api.transactions.get_transaction('6920969059388666996')\n    print(tx.confirmations) # 838512\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -9854,6 +9928,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.transactions\n  .getUnconfirmedTransactions()\n  .then(function({ count }) {\n    console.log(count) // 3\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.transactions.get_unconfirmed_transactions()\n    print(res.count) # 3\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
@@ -9902,6 +9980,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.transactions\n  .getUnconfirmedTransaction('6920969059388666996')\n  .then(function({ transaction }) {\n    console.log(transaction.fee) // 10000000\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "python",
+            "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    utx = api.transactions.get_unconfirmed_transaction('6920969059388666996')\n    if utx is not None:\n        print(utx.tx.fee) # 10000000\nexcept APIError as err:\n    print('API error:', err)\n"
           }
         ],
         "servers": [
