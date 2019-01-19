@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{270:function(n,i,o){"use strict";o.r(i),i.default=[{depth:1,value:"Configuration",id:"configuration"}]}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{270:function(t,n,e){"use strict";e.r(n),n.default=[{depth:1,value:"Testnet Installation",id:"testnet-installation"}]}}]);
