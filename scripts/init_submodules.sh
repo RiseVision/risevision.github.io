@@ -13,6 +13,7 @@ git submodule update --recursive --remote
 # rise-node
 cd $ROOT/libraries/rise-node
 npm install
+npm update --no-save rc-openapi-gen
 npm run transpile
 git stash
 
