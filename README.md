@@ -2,7 +2,7 @@
 
 ## Installation
 
-Clone the repository with `git clone --recurse-submodules https://github.com/RiseVision/risevision.github.io.git`. Change into the directory and run `npm install`.
+Clone the repository with `git clone --recurse-submodules https://github.com/RiseVision/risevision.github.io.git`. Change into the directory and run `npm install`. The docs require you to be able to compile the `rise-node` and run on **Node.js v8.x**
 
 ## Generating Docs
 
