@@ -22,4 +22,4 @@ The install command will ask you some questions to preconfigure the basics of yo
 
 The node will start from **height 0** and it might take some time to get it up to sync with the network.
 
-If you wish to you can always use a verified snapshot that will significantly drop the time needed for your node to get up in sync. For this please refer to [link href="pages/NodeManagement!restore-verified-snapshot"]Managing your node[/link]
+If you wish to you can always use a verified snapshot that will significantly drop the time needed for your node to get up in sync. For this please refer to [link href="pages/node/Management!restore-verified-snapshot"]Managing your node[/link]

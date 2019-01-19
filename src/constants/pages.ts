@@ -58,6 +58,10 @@ export const tableOfContents: TOC = {
             {
               name: "Testnet",
               page: "node/installation/Testnet"
+            },
+            {
+              name: "Docker",
+              page: "node/installation/Docker"
             }
           ]
         },
