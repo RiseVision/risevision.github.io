@@ -15,6 +15,10 @@ export const navigation: { items: ConfigItem[] } = {
         {
           name: "Java Client",
           external: "https://github.com/RiseVision/java-wrapper-api"
+        },
+        {
+          name: "Elixir Client",
+          external: "https://github.com/1india/rise-elixir"
         }
       ]
     }
