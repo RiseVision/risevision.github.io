@@ -7506,6 +7506,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    acc = api.accounts.get_account('8093718274007724701R')\n    print('Balance: {} RISE'.format(acc.balance.to_unit()))\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Accounts.get_account(%{address: \"8093718274007724701R\"})\n  IO.puts(\"Balance: #{result[\"account\"][\"balance\"]} RISE\")\n  # Balance: 3370390005074 RISE\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -7554,6 +7558,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.accounts\n  .getBalance('8093718274007724701R')\n  .then(function({ balance }) {\n    console.log(balance) // 2973803650603\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Accounts.get_balance(%{address: \"8093718274007724701R\"})\n  IO.puts(\"Balance: #{result[\"balance\"]} RISE\")\n  # Balance: 3370390005074 RISE\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -7602,6 +7610,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.accounts\n  .getPublicKey('8093718274007724701R')\n  .then(function({ publicKey }) {\n    console.log(publicKey) // \"7067a911f3a4...\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Accounts.get_publicKey(%{address: \"6507244540548668920R\"})\n  IO.puts(\"PublicKey: #{result[\"publicKey\"]}\")\n  # PublicKey: 7f47eb8161678a776d63d100508bf5bb5865361481e3054428c66ab9432b2b01\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -7654,6 +7666,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    delegates = api.accounts.get_account_delegates('8093718274007724701R')\n    print(delegates[0].public_key.hex())\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Accounts.get_delegates(%{address: \"8093718274007724701R\"})\n  IO.puts(\"Delegate publicKey: #{Enum.at(result[\"delegates\"], 0)[\"publicKey\"]}\")\n  # Delegate publicKey: aaabdbb92c4bd64b175c6228f3a868ca2bbe8ff034d160364bf3e2f448148aa3\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -7908,6 +7924,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.blocks.get_blocks(limit=3)\n    print(res.blocks[0].block_id) # 1894880255589205181\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Blocks.get(%{limit: 3})\n  IO.puts(\"Block id: #{Enum.at(result[\"blocks\"], 0)[\"id\"]}\")\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -7960,6 +7980,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    block = api.blocks.get_block('1359353064084280533')\n    print(block.height)\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Blocks.get(%{id: \"16907575157603209054\"})\n  IO.puts(\"Block Height: #{Enum.at(result[\"blocks\"], 0)[\"height\"]}\")\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8162,6 +8186,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.blocks.get_fees()\n    print(res.fees.send) # 10000000\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Blocks.get_fees(%{height: 1})\n  IO.puts(\"Block send fee: #{result[\"fees\"][\"send\"]}\")\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8356,6 +8384,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    status = api.blocks.get_status()\n    print(status.height) # 1356378\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  status = RiseElixir.Blocks.get_status()\n  IO.puts(status[\"height\"])\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8408,6 +8440,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.delegates.get_delegates(limit=3)\n    print(res.delegates[0].username) # official_pool\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Delegates.get(%{limit: 3})\n  IO.puts(\"Delegate username: #{Enum.at(result[\"delegates\"], 0)[\"username\"]}\")\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8533,6 +8569,10 @@
           {
             "lang": "python",
             "source": "from risesdk import PublicKey, APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ndelegate_pk = PublicKey.fromhex('7067a911f3a4e13facbae9006b52a0c3ac9824bdd9f37168303152ae49dcb1c0')\ntry:\n    res = api.delegates.get_forged_by_account(delegate_pk)\n    print(res.forged) # 19066025346961\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result =\n    RiseElixir.Delegates.get_forged_by_account(%{\n      generatorPublicKey: \"7f31f1b13f211ada60b61e47778b8d59e7f0ecb56fd6f9ea9200c805e352f6a8\"\n    })\n\n  IO.puts(\"Forged: #{result[\"forged\"]}\")\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8585,6 +8625,10 @@
           {
             "lang": "python",
             "source": "from risesdk import PublicKey, APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ndelegate_pk = PublicKey.fromhex('7067a911f3a4e13facbae9006b52a0c3ac9824bdd9f37168303152ae49dcb1c0')\ntry:\n    delegate = api.delegates.get_delegate(delegate_pk)\n    print(delegate.username) # official_pool\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result =\n    RiseElixir.Delegates.get_delegate(%{\n      generatorPublicKey: \"7f31f1b13f211ada60b61e47778b8d59e7f0ecb56fd6f9ea9200c805e352f6a8\"\n    })\n\n  IO.puts(result[\"forged\"])\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8637,6 +8681,10 @@
           {
             "lang": "python",
             "source": "from risesdk import PublicKey, APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ndelegate_pk = PublicKey.fromhex('a65a8160b1e0733f66d1f1a8f322c9af29b26d5e491a84d6e3ae0ec43e000446')\ntry:\n    voters = api.delegates.get_voters(delegate_pk)\n    print(len(voters)) # 5\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result =\n    RiseElixir.Delegates.get_voters(%{\n      publicKey: \"7f31f1b13f211ada60b61e47778b8d59e7f0ecb56fd6f9ea9200c805e352f6a8\"\n    })\n\n  IO.puts(Enum.count(result[\"accounts\"]))\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8689,6 +8737,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    delegates = api.delegates.search_delegates('pool')\n    print(delegates[0].username) # official_pool\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result =\n    RiseElixir.Delegates.search(%{\n      q: \"pool\",\n      limit: 2\n    })\n\n  IO.puts(Enum.count(result[\"delegates\"]))\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8727,6 +8779,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    count = api.delegates.get_delegate_count()\n    print(count) # 5278\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  delegates_count = RiseElixir.Delegates.get_count()\n  IO.puts(delegates_count[\"count\"])\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8779,6 +8835,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.delegates.get_next_forgers()\n    print(res.delegates[0].hex()) # a65a8160b1e07...\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Delegates.get_next_forgers(%{})\n  IO.puts(Enum.at(result[\"delegates\"], 0))\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8841,6 +8901,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('http://localhost:5566/api/')\ntry:\n    res = api.delegates.get_forging_status()\n    print(res.enabled) # true\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result =\n    RiseElixir.Delegates.get_forging_status(%{\n      generatorPublicKey: \"7f31f1b13f211ada60b61e47778b8d59e7f0ecb56fd6f9ea9200c805e352f6a8\"\n    })\n\n  IO.puts(result[\"enabled\"]) #true\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -8985,6 +9049,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.loader\n  .status()\n  .then(function({ loaded }) {\n    console.log(loaded) // true\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Loader.get_status()\n  IO.puts(\"Loader status: #{result[\"loaded\"]}\")\n  # true\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9023,6 +9091,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.loader\n  .syncStatus()\n  .then(function({ syncing }) {\n    console.log(syncing) // false\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Loader.get_sync_status()\n  IO.puts(\"Loader sync status: #{result[\"syncing\"]}\")\n  # false\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9265,6 +9337,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.peers\n  .getList()\n  .then(function({ peers }) {\n    console.log(peers.length) // 5\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Peers.get(%{limit: 3})\n  IO.puts(\"Peers: #{Enum.count(result[\"peers\"])}\")\n  # 3\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9313,6 +9389,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.peers\n  .getByIPPort({ ip: '45.32.178.6', port: 5555 })\n  .then(function({ peer }) {\n    console.log(peer.version) // 1.0.3\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Peers.get_peer(%{ip: \"167.114.212.9\", port: \"5555\"})\n  IO.puts(\"Peer ip: #{result[\"peers\"][\"ip\"]}\")\n  # 167.114.212.9\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9383,6 +9463,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.peers\n  .version()\n  .then(function({ version }) {\n    console.log(version) // 1.1.1\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Peers.get_version()\n  IO.puts(\"Peer version: #{result[\"version\"]}\")\n  # 1.3.2\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9431,6 +9515,10 @@
           {
             "lang": "javascript",
             "source": "import { rise } from 'risejs'\n\nrise.signatures\n  .getSecondSignatureFee()\n  .then(function({ fee }) {\n    console.log(fee) // 500000000\n  })\n  .catch(function(err) {\n    console.log('Error: ', err) // handle error\n  })\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Signatures.get_fee(%{})\n  IO.puts(\"Signature fee: #{result[\"fee\"]}\")\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9516,6 +9604,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client, RegisterDelegateTx\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.transactions.get_transactions(\n        and__type_cls=RegisterDelegateTx,\n        limit=1,\n        order_by='height:desc',\n    )\n    print('Newest delegate:', res.transactions[0].tx.username)\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Transactions.get(%{limit: 2, orderBy: \"height:desc\"})\n  IO.puts(Enum.count(result[\"transactions\"]))\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9618,6 +9710,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client, PublicKey, Address, Amount, SendTx\n\napi = Client('https://wallet.rise.vision/api/')\n\ntx = SendTx(\n    sender_public_key=PublicKey.fromhex('bf4809a1a08c9dffbba741f0c7b9f49145602341d5fa306fb3cd592d3e1058b3'),\n    recipient=Address('3303015780877366956R'),\n    amount=Amount.from_unit('1995.33766861'),\n    fee=Amount.from_unit('0.1'),\n)\n# tx.signature = sk.sign(tx.to_bytes())\n\ntry:\n    res = api.transactions.add_transactions(tx)\n    print(len(res.accepted)) # 1\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result =\n    RiseElixir.Transactions.put(%{\n      senderPublicKey: \"bf4809a1a08c9dffbba741f0c7b9f49145602341d5fa306fb3cd592d3e1058b3\",\n      recipientId: \"3303015780877366956R\",\n      amount: \"1995.33766861\",\n      fee: \"0.1\"\n    })\n\n  IO.puts(result[\"success\"])\n  # true\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9660,6 +9756,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    counts = api.transactions.get_transaction_count()\n    print(counts.confirmed) # 563381\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Transactions.get_count()\n  IO.puts(result[\"confirmed\"])\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9712,6 +9812,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    tx = api.transactions.get_transaction('6920969059388666996')\n    print(tx.confirmations) # 838512\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Transactions.get_by_id(%{id: \"6920969059388666996\"})\n  IO.puts(result[\"transaction\"][\"confirmations\"])\n  # 968431\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9932,6 +10036,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    res = api.transactions.get_unconfirmed_transactions()\n    print(res.count) # 3\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Transactions.get_unconfirmed(%{})\n  IO.puts(result[\"count\"])\n  # 3\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
@@ -9984,6 +10092,10 @@
           {
             "lang": "python",
             "source": "from risesdk import APIError, Client\n\napi = Client('https://wallet.rise.vision/api/')\ntry:\n    utx = api.transactions.get_unconfirmed_transaction('6920969059388666996')\n    if utx is not None:\n        print(utx.tx.fee) # 10000000\nexcept APIError as err:\n    print('API error:', err)\n"
+          },
+          {
+            "lang": "elixir",
+            "source": "import RiseElixir\n\ntry do\n  result = RiseElixir.Transactions.get_unconfirmed_by_id(%{id: \"6920969059388666996\"})\n\n  if result[\"error\"] do\n    # \"Transaction not found in this queue 6920969059388666996\"\n    IO.puts(result[\"error\"])\n  else\n    IO.puts(Enum.at(result[\"transactions\"], 0))\n  end\ncatch\n  err -> \"API error #{err}\"\nend\n"
           }
         ],
         "servers": [
