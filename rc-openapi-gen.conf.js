@@ -40,6 +40,9 @@ module.exports = {
       },
       python: {
         extension: 'py'
+      },
+      elixir: {
+        extension: 'exs'
       }
     }
   }
