@@ -70,6 +70,14 @@ export const tableOfContents: TOC = {
           page: "node/Management",
           items: [
             {
+              name: "Forging",
+              page: "node/management/Forging"
+            },
+            {
+              name: "API Access",
+              page: "node/management/APIAccess"
+            },
+            {
               name: "Folder Structure",
               page: "node/management/FolderStructure"
             },

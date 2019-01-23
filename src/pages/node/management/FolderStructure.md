@@ -16,11 +16,13 @@ share/
 src/
 ```
 
-Most of the folders are no use to the node operator but logs, data, etc are particoularly helpful in some situations.
+Most of the folders are no use to the node operator but `logs`, `data` and `etc` are particularly helpful in some situations.
 
 ## etc
 
 The `etc` subfolder contains most of the configuration files from both the core and the dependencies. You can tweak any file in this folder but you should know what you're doing.
+
+> *Important*: Remeber to restart the node with `./manager.sh reload node` after changing configuration options to apply changes. Review [link href="pages/node/Management!reload"]the Node Management commands section[/link] for more information.
 
 The `node_config.json` is particularly helpful for **forging delegates**. Inside such file you can enter your forging `secret`. Example:
 
